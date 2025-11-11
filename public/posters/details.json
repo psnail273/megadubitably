@@ -1,0 +1,113 @@
+[
+    {
+        "id": 1,
+        "title": "Captain America: Brave New World",
+        "image": "/posters/p-image-1.jpg",
+        "width": 1013,
+        "height": 1500
+    },
+    {
+        "id": 2,
+        "title": "Wild Wild Space",
+        "image": "/posters/p-image-2.jpg",
+        "width": 1013,
+        "height": 1500
+    },{
+        "id": 3,
+        "title": "Gladiator 2",
+        "image": "/posters/p-image-3.jpg",
+        "width": 1013,
+        "height": 1500
+    },
+    {
+        "id": 4,
+        "title": "Crow",
+        "image": "/posters/p-image-4.jpg",
+        "width": 1080,
+        "height": 1350
+    },
+    {
+        "id": 5,
+        "title": "Dispicable Me 4",
+        "image": "/posters/p-image-5.jpg",
+        "width": 1061,
+        "height": 1500
+    },
+    {
+        "id": 6,
+        "title": "Saving Bikini Bottom",
+        "image": "/posters/p-image-6.jpg",
+        "width": 1013,
+        "height": 1500
+    },
+    {
+        "id": 7,
+        "title": "Deadpool and Wolverine",
+        "image": "/posters/p-image-7.jpg",
+        "width": 1061,
+        "height": 1500
+    },
+    {
+        "id": 8,
+        "title": "Inside Out 2",
+        "image": "/posters/p-image-8.jpg",
+        "width": 1200,
+        "height": 1500
+    },
+    {
+        "id": 9,
+        "title": "The Wild Robot",
+        "image": "/posters/p-image-9.jpg",
+        "width": 947,
+        "height": 1500
+    },
+    {
+        "id": 10,
+        "title": "Lion King",
+        "image": "/posters/p-image-10.jpg",
+        "width": 1013,
+        "height": 1500
+    },
+    {
+        "id": 11,
+        "title": "Venom",
+        "image": "/posters/p-image-11.jpg",
+        "width": 1012,
+        "height": 1500
+    },  
+    {
+        "id": 12,
+        "title": "Thelma: The Unicorn",
+        "image": "/posters/p-image-12.jpg",
+        "width": 1080,
+        "height": 1350
+    },
+    {
+        "id": 13,
+        "title": "V",
+        "image": "/posters/p-image-13.jpg",
+        "width": 1013,
+        "height": 1500
+    },
+    {
+        "id": 14,
+        "title": "Futurama",
+        "image": "/posters/p-image-14.jpg",
+        "width": 1013,
+        "height": 1500
+    },
+    {
+        "id": 15,
+        "title": "Agatha All Along",
+        "image": "/posters/p-image-15.jpg",
+        "width": 1013,
+        "height": 1500
+    },
+    {
+        "id": 16,
+        "title": "Terminator",
+        "image": "/posters/p-image-16.jpg",
+        "width": 1080,
+        "height": 1350
+    }
+]
