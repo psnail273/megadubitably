@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Open_Sans, Playfair_Display_SC } from 'next/font/google';
 import Navigation from '@/components/navigation/navigation';
+import MuiRegistry from '@/components/mui-registry';
 
 const openSansLight = Open_Sans({
   variable: '--font-open-sans-light',
@@ -28,8 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${openSansLight.variable} ${playfairDisplaySc.variable}`}>
       <body className={'antialiased'}>
-        <Navigation />
-        {children}
+        <MuiRegistry>
+          <Navigation />
+          {children}
+        </MuiRegistry>
       </body>
     </html>
   );

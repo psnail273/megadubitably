@@ -1,0 +1,40 @@
+{
+    "banner": {
+        "image": "/comics/cottonwood/BANNER.jpg",
+        "width": 2607,
+        "height": 796
+    },
+    "awards": {
+        "image": "/comics/cottonwood/AWARDS.jpg",
+        "width": 923,
+        "height": 202
+    },
+    "title": {
+        "image": "/comics/cottonwood/TITLE.png",
+        "width": 873,
+        "height": 116
+    },
+    "leaf": {
+        "image": "/comics/cottonwood/LEAF.jpg",
+        "width": 592,
+        "height": 792
+    },
+    "pages": {
+        "width": 3975,
+        "height": 3075,
+        "images": [
+            "/comics/cottonwood/PG1.jpg",
+            "/comics/cottonwood/PG2.jpg",
+            "/comics/cottonwood/PG3.jpg",
+            "/comics/cottonwood/PG4.jpg",
+            "/comics/cottonwood/PG5.jpg",
+            "/comics/cottonwood/PG6.jpg",
+            "/comics/cottonwood/PG7.jpg",
+            "/comics/cottonwood/PG8.jpg",
+            "/comics/cottonwood/PG9.jpg",
+            "/comics/cottonwood/PG10.jpg",
+            "/comics/cottonwood/PG11.jpg",
+            "/comics/cottonwood/PG12.jpg"
+        ]
+    }
+}
