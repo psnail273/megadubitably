@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function GalleryItem({ image, isModal }: { image: GalleryImage, isModal?: boolean }) {
   return (
-    <div className={`flex flex-col gap-3 ${isModal ? 'justify-center' : 'justify-start' } w-full`}>
+    <div className={`flex flex-col gap-3 ${isModal ? 'justify-center' : 'justify-start' } w-full max-h-svh`}>
       <Image
         src={image.image}
         alt={image.title}
