@@ -2,95 +2,143 @@
     {
         "title": "Captain America: Brave New World",
         "image": "/posters/p-image-1.jpg",
+        "slug": "captain-america-brave-new-world",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1013,
         "height": 1500
     },
     {
         "title": "Wild Wild Space",
         "image": "/posters/p-image-2.jpg",
+        "slug": "wild-wild-space",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1013,
         "height": 1500
     },{
         "title": "Gladiator 2",
         "image": "/posters/p-image-3.jpg",
+        "slug": "gladiator-2",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1013,
         "height": 1500
     },
     {
         "title": "Crow",
         "image": "/posters/p-image-4.jpg",
+        "slug": "crow",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1080,
         "height": 1350
     },
     {
         "title": "Dispicable Me 4",
         "image": "/posters/p-image-5.jpg",
+        "slug": "dispicable-me-4",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1061,
         "height": 1500
     },
     {
         "title": "Saving Bikini Bottom",
         "image": "/posters/p-image-6.jpg",
+        "slug": "saving-bikini-bottom",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1013,
         "height": 1500
     },
     {
         "title": "Deadpool and Wolverine",
         "image": "/posters/p-image-7.jpg",
+        "slug": "deadpool-and-wolverine",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1061,
         "height": 1500
     },
     {
         "title": "Inside Out 2",
         "image": "/posters/p-image-8.jpg",
+        "slug": "inside-out-2",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1200,
         "height": 1500
     },
     {
         "title": "The Wild Robot",
         "image": "/posters/p-image-9.jpg",
+        "slug": "the-wild-robot",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 947,
         "height": 1500
     },
     {
         "title": "Lion King",
         "image": "/posters/p-image-10.jpg",
+        "slug": "lion-king",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1013,
         "height": 1500
     },
     {
         "title": "Venom",
         "image": "/posters/p-image-11.jpg",
+        "slug": "venom",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1012,
         "height": 1500
     },  
     {
         "title": "Thelma: The Unicorn",
         "image": "/posters/p-image-12.jpg",
+        "slug": "thelma-the-unicorn",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1080,
         "height": 1350
     },
     {
         "title": "V",
         "image": "/posters/p-image-13.jpg",
+        "slug": "v",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1013,
         "height": 1500
     },
     {
         "title": "Futurama",
         "image": "/posters/p-image-14.jpg",
+        "slug": "futurama",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1013,
         "height": 1500
     },
     {
         "title": "Agatha All Along",
         "image": "/posters/p-image-15.jpg",
+        "slug": "agatha-all-along",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1013,
         "height": 1500
     },
     {
         "title": "Terminator",
         "image": "/posters/p-image-16.jpg",
+        "slug": "terminator",
+        "type": "Key Art",
+        "description": "Designed for BLT Communications",
         "width": 1080,
         "height": 1350
     }

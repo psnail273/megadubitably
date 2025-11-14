@@ -27,11 +27,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${openSansLight.variable} ${playfairDisplaySc.variable}`}>
-      <body className={'antialiased'}>
+    <html lang="en" className={`${openSansLight.variable} ${playfairDisplaySc.variable} h-full`}>
+      <body className={'antialiased h-full flex flex-col'}>
         <MuiRegistry>
           <Navigation />
-          {children}
+          <div className="flex-1 overflow-auto">
+            {children}
+          </div>
         </MuiRegistry>
       </body>
     </html>

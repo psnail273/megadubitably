@@ -4,3 +4,15 @@
   --font-open-sans-light: var(--font-open-sans-light);
   --font-playfair-display-sc: var(--font-playfair-display-sc);
 }
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+/* :root:has(.modal-open) {
+    overflow:scroll;
+  } */

@@ -1,14 +1,12 @@
 import Gallery from '@/components/gallery/gallery';
-import { promises as fs } from 'fs';
-import type { GalleryImage } from '@/types/galleryImage';
+import { getDetails } from '@/lib/utils';
 
 export default async function Illustration() {
-  const file = await fs.readFile('public/illustrations/details.json', 'utf8');
-  const data: GalleryImage[] = JSON.parse(file);
+  const data = await getDetails('illustrations');
 
   return ( 
     <>
-      <Gallery data={data} />
+      <Gallery data={data} path="illustration" />
     </>
   );
 }

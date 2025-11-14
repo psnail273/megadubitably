@@ -2,144 +2,216 @@
     {
         "title": "1",
         "image": "/illustrations/i-image-1.jpg",
+        "slug": "illustration-1",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 770,
         "height": 550
     },
     {
         "title": "2",
         "image": "/illustrations/i-image-2.jpg",
+        "slug": "illustration-2",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 474,
         "height": 640
     },
     {
         "title": "3",
         "image": "/illustrations/i-image-3.jpg",
+        "slug": "illustration-3",
+        "type": "Illustration",
+        "description": "Designed for fun",
        "width": 474,
         "height": 640
     },
     {
         "title": "4",
         "image": "/illustrations/i-image-4.jpg",
+        "slug": "illustration-4",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 474,
         "height": 640
     },
     {        
         "title": "5",
         "image": "/illustrations/i-image-5.jpg",
+        "slug": "illustration-5",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 750,
         "height": 485
     },
     {        
         "title": "6",
         "image": "/illustrations/i-image-6.jpg",
+        "slug": "illustration-6",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 789,
         "height": 450
     },
     {        
         "title": "7",
         "image": "/illustrations/i-image-7.jpg",
+        "slug": "illustration-7",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 523,
         "height": 640
     },
     {        
         "title": "8",
         "image": "/illustrations/i-image-8.jpg",
+        "slug": "illustration-8",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 523,
         "height": 640
     },
     {        
         "title": "9",
         "image": "/illustrations/i-image-9.jpg",
+        "slug": "illustration-9",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 523,
         "height": 640
     },
     {
         "title": "10",
         "image": "/illustrations/i-image-10.jpg",
+        "slug": "illustration-10",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 468,
         "height": 640
     },
     {
         "title": "11",
         "image": "/illustrations/i-image-11.jpg",
+        "slug": "illustration-11",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 436,
         "height": 640
     },
     {
         "title": "12",
         "image": "/illustrations/i-image-12.jpg",
+        "slug": "illustration-12",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 324,
         "height": 640
     },
     {
         "title": "13",
         "image": "/illustrations/i-image-13.jpg",
+        "slug": "illustration-13",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 414,
         "height": 640
     },
     {
         "title": "14",
         "image": "/illustrations/i-image-14.jpg",
+        "slug": "illustration-14",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 1557,
         "height": 956
     },
     {
         "title": "15",
         "image": "/illustrations/i-image-15.jpg",
+        "slug": "illustration-15",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 1098,
         "height": 890
     },
     {
         "title": "16",
         "image": "/illustrations/i-image-16.jpg",
+        "slug": "illustration-16",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 247,
         "height": 320
     },
     {
         "title": "17",
         "image": "/illustrations/i-image-17.jpg",
+        "slug": "illustration-17",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 1600,
         "height": 905
     },
     {
         "title": "18",
         "image": "/illustrations/i-image-18.jpg",
+        "slug": "illustration-18",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 1600,
         "height": 896
     },
     {
         "title": "19",
         "image": "/illustrations/i-image-19.jpg",
+        "slug": "illustration-19",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 247,
         "height": 320
     },
     {
         "title": "20",
         "image": "/illustrations/i-image-20.jpg",
+        "slug": "illustration-20",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 249,
         "height": 320
     },
     {
         "title": "21",
         "image": "/illustrations/i-image-23.jpg",
+        "slug": "illustration-23",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 222,
         "height": 320
     },
     {
         "title": "22",
         "image": "/illustrations/i-image-24.jpg",
+        "slug": "illustration-24",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 270,
         "height": 320
     },
     {
         "title": "23",
         "image": "/illustrations/i-image-25.jpg",
+        "slug": "illustration-25",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 207,
         "height": 320
     },
     {
         "title": "24",
         "image": "/illustrations/i-image-26.jpg",
+        "slug": "illustration-26",
+        "type": "Illustration",
+        "description": "Designed for fun",
         "width": 187,
         "height": 320
     }
