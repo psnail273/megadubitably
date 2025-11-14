@@ -19,8 +19,8 @@ export default async function PhotoPage({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-full">
-      <GalleryItem image={image} />
+    <div className="flex flex-1 flex-row w-auto h-full justify-between">
+      <GalleryItem image={image} isModal={false} />
     </div>
   );
 }

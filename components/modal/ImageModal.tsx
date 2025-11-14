@@ -28,14 +28,14 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
 
   return (
     <div
-      className="absolute inset-0 flex items-center justify-center z-1 bg-white/90 p-5 min-h-screen"
+      className="absolute inset-0 flex items-center justify-center z-1 bg-white/90 min-h-screen"
       onClick={() => router.back()}
     >
       <div className="flex flex-1 flex-row w-auto h-full justify-between">
         <Link className="flex h-full hover:opacity-50" href={`/${path}/${previousSlug}`} replace onClick={handlePrevious}>
           <Image src={'/chevron-left.svg'} alt='back' width={48} height={48} />
         </Link>
-        <GalleryItem image={data[index]} />
+        <GalleryItem image={data[index]} isModal={true}/>
         <Link className="flex h-full hover:opacity-50" href={`/${path}/${nextSlug}`} replace onClick={handleNext}>
           <Image src={'/chevron-right.svg'} alt='next' width={48} height={48}/>
         </Link>
