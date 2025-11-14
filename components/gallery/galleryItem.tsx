@@ -3,14 +3,16 @@ import Image from 'next/image';
 
 export default function GalleryItem({ image, isModal }: { image: GalleryImage, isModal?: boolean }) {
   return (
-    <div className={`flex flex-col gap-3 ${isModal ? 'justify-center' : 'justify-start' } w-full max-h-svh`}>
-      <Image
-        src={image.image}
-        alt={image.title}
-        width={image.width}
-        height={image.height}
-        className="object-contain max-h-[90%] w-auto"
-      />
+    <div className={`flex flex-col w-full ${isModal ? 'mt-29' : ''} gap-3`}>
+      <div className={'flex flex-col h-auto max-h-[90%]'}>
+        <Image
+          src={image.image}
+          alt={image.title}
+          width={image.width}
+          height={image.height}
+          className="object-contain w-auto h-full"
+        />
+      </div>
       <div className="flex flex-col items-center justify-center text-center">
         <div className="flex flex-col md:flex-row gap-0 md:gap-2 font-open-sans-light text-xl ">
           <span className="font-semibold">{image.title}</span>

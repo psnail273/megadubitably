@@ -6,4 +6,13 @@ export interface GalleryImage {
   description: string;
   width: number;
   height: number;
-}
+  extra?: {
+    title: string;
+    slug: string;
+    type: string;
+    description: string;
+    image: string;
+    width: number;
+    height: number;
+  }[];
+} 
