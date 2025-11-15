@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function Gallery({ data, path }: { data: GalleryImage[], path: string }) {
   return (
     <Masonry columns={{xxl: 5, xl: 4, lg: 3, md: 2, sm: 1}} spacing={0} >
-      {data.map((poster) => {
+      {data.filter((poster) => !poster.hidden).map((poster: GalleryImage) => {
         const slug = poster.slug;
 
         return (
