@@ -25,7 +25,7 @@ export default function GalleryItem({ image, isModal }: { image: GalleryImage, i
   };
 
   return (
-    <div className={`flex flex-col w-full ${isModal ? 'mt-29' : ''} gap-3`}>
+    <div className={'flex flex-col w-full gap-3 justify-center'}>
       <div className={`flex flex-row items-center justify-center ${extra && extra.length > 0 ? 'max-h-[54vh] sm:max-h-[67vh]' : 'max-h-[64vh] sm:max-h-[77vh]'} `}>
         <Image
           src={visibleImage.image}

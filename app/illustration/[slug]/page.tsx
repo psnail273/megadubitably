@@ -20,7 +20,7 @@ export default async function IllustrationPage({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-full">
+    <div className="flex flex-col items-center justify-start h-full">
       <GalleryItem image={image} isModal={false}/>
     </div>
   );
