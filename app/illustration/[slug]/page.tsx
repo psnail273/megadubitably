@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import GalleryItem from '@/components/gallery/galleryItem';
-import { getDetails } from '@/lib/utils';
+import { getDetails, getImage } from '@/lib/utils';
 
 export default async function IllustrationPage({
   params,
@@ -13,7 +13,7 @@ export default async function IllustrationPage({
   const data = await getDetails('illustrations');
 
   // Find the image by matching the slug
-  const image = data.find((item) => item.slug === slug);
+  const image = getImage(slug, data);
 
   if (!image) {
     notFound();
@@ -21,7 +21,7 @@ export default async function IllustrationPage({
 
   return (
     <div className="flex flex-col items-center justify-center h-full">
-      <GalleryItem image={image} />
+      <GalleryItem image={image} isModal={false}/>
     </div>
   );
 }

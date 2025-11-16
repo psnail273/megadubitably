@@ -79,12 +79,33 @@
         "width": 947,
         "height": 1500,
         "extra": [
-            "the-wild-robot-2", 
-            "the-wild-robot-3", 
-            "the-wild-robot-4", 
-            "the-wild-robot-5", 
-            "the-wild-robot-6", 
-            "the-wild-robot-7"
+            {
+                "title": "The Wild Robot",
+                "image": "/posters/p-image-20.jpg",
+                "slug": "the-wild-robot-2",
+                "type": "Key Art",
+                "description": "Designed for BLT Communications",
+                "width": 947,
+                "height": 1500
+            },
+            {
+                "title": "The Wild Robot",
+                "image": "/posters/p-image-21.jpg",
+                "slug": "the-wild-robot-3",
+                "type": "Key Art",
+                "description": "Designed for BLT Communications",
+                "width": 947,
+                "height": 1500
+            },
+            {
+                "title": "The Wild Robot",
+                "image": "/posters/p-image-22.jpg",
+                "slug": "the-wild-robot-4",
+                "type": "Key Art",
+                "description": "Designed for BLT Communications",
+                "width": 533,
+                "height": 755
+            }
         ]
     },
     {
@@ -149,65 +170,5 @@
         "description": "Designed for BLT Communications",
         "width": 1080,
         "height": 1350
-    },
-    {
-        "title": "The Wild Robot",
-        "image": "/posters/p-image-20.jpg",
-        "slug": "the-wild-robot-2",
-        "type": "Key Art",
-        "description": "Designed for BLT Communications",
-        "width": 947,
-        "height": 1500,
-        "hidden": true
-    },
-    {
-        "title": "The Wild Robot",
-        "image": "/posters/p-image-21.jpg",
-        "slug": "the-wild-robot-3",
-        "type": "Key Art",
-        "description": "Designed for BLT Communications",
-        "width": 947,
-        "height": 1500,
-        "hidden": true
-    },
-    {
-        "title": "The Wild Robot",
-        "image": "/posters/p-image-22.jpg",
-        "slug": "the-wild-robot-4",
-        "type": "Key Art",
-        "description": "Designed for BLT Communications",
-        "width": 533,
-        "height": 755,
-        "hidden": true
-    },
-    {
-        "title": "The Wild Robot",
-        "image": "/posters/p-image-20.jpg",
-        "slug": "the-wild-robot-5",
-        "type": "Key Art",
-        "description": "Designed for BLT Communications",
-        "width": 947,
-        "height": 1500,
-        "hidden": true
-    },
-    {
-        "title": "The Wild Robot",
-        "image": "/posters/p-image-21.jpg",
-        "slug": "the-wild-robot-6",
-        "type": "Key Art",
-        "description": "Designed for BLT Communications",
-        "width": 947,
-        "height": 1500,
-        "hidden": true
-    },
-    {
-        "title": "The Wild Robot",
-        "image": "/posters/p-image-22.jpg",
-        "slug": "the-wild-robot-7",
-        "type": "Key Art",
-        "description": "Designed for BLT Communications",
-        "width": 533,
-        "height": 755,
-        "hidden": true
     }
 ]

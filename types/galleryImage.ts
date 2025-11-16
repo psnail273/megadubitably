@@ -7,5 +7,5 @@ export interface GalleryImage {
   width: number;
   height: number;
   hidden?: boolean;
-  extra?: string[];
+  extra?: GalleryImage[];
 } 

@@ -35,7 +35,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
         <Link className="flex h-full hover:opacity-50" href={`/${path}/${previousSlug}`} replace onClick={handlePrevious}>
           <Image src={'/chevron-left.svg'} alt='back' width={48} height={48} />
         </Link>
-        <GalleryItem image={data[index]} isModal={true}/>
+        <GalleryItem image={data[index]} isModal={true} />
         <Link className="flex h-full hover:opacity-50" href={`/${path}/${nextSlug}`} replace onClick={handleNext}>
           <Image src={'/chevron-right.svg'} alt='next' width={48} height={48}/>
         </Link>
