@@ -12,7 +12,7 @@ export default async function ComicsPage() {
         <Image src={data['banner']['image']} alt="Cottonwood_Banner" width={data['banner']['width']} height={data['banner']['height']} />
         <div className="flex flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-8 mx-4">
-            <div className="text-center max-w-[100ch]">
+            <div className="font-open-sans-light text-center max-w-[100ch]">
               Once upon a time in the land of enchantment...
               <br />
             </div>
@@ -22,10 +22,10 @@ export default async function ComicsPage() {
               <br />
               <br />
 
-              This project was a little ambitious for my first comic book, but over eight years later we published it via a successful Kickstarter campaign, which you can view by clicking <a href="https://www.kickstarter.com/projects/250303295/under-the-cottonwood-tree-a-latinx-fairy-tale-adve" target="_blank" rel="noopener noreferrer" className="text-[#939BBA] hover:underline">here</a>.
+              This project was a little ambitious for my first comic book, but over eight years later we published it via a successful Kickstarter campaign, which you can view by clicking <a href="https://www.kickstarter.com/projects/250303295/under-the-cottonwood-tree-a-latinx-fairy-tale-adve" target="_blank" rel="noopener noreferrer" className="text-[#939BBA] hover:underline font-bold">here</a>.
               <br />
               <br />
-              You can purchase the book via this <a href="https://www.underthecottonwoodtree.com/#buy_now" target="_blank" rel="noopener noreferrer" className="text-[#939BBA] hover:underline">link</a>.
+              You can purchase the book via this <a href="https://www.underthecottonwoodtree.com/#buy_now" target="_blank" rel="noopener noreferrer" className="text-[#939BBA] hover:underline font-bold">link</a>.
               <br />
               <br />
               Below are some selected interior pages:

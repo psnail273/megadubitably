@@ -39,7 +39,7 @@ export default function Navigation() {
       <div className="hidden lg:flex flex-row justify-end items-center gap-8 ">
         {navLinks.map((link) => (
           <Link key={link.href} href={link.href} className={`font-open-sans-light tracking-wider uppercase hover:opacity-50 ${
-            pathname === link.href
+            (link.href === '/' ? (pathname === '/' || pathname.startsWith('/poster')) : pathname.startsWith(link.href))
               ? 'text-[#939BBA] underline underline-offset-4'
               : 'text-black'
           }`}>
@@ -61,12 +61,12 @@ export default function Navigation() {
         <div className="absolute top-full left-0 right-0 mt-2 bg-white shadow-lg z-1 lg:hidden">
           <div className="flex flex-col gap-6 p-8">
             {navLinks.map((link) => (
-              <Link 
-                key={link.href} 
-                href={link.href} 
+              <Link
+                key={link.href}
+                href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className={`font-open-sans-light tracking-wider uppercase hover:opacity-50 ${
-                  pathname === link.href
+                  (link.href === '/' ? (pathname === '/' || pathname.startsWith('/poster')) : pathname.startsWith(link.href))
                     ? 'text-[#939BBA] underline underline-offset-4'
                     : 'text-black'
                 }`}
