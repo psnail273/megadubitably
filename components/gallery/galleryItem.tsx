@@ -60,7 +60,7 @@ export default function GalleryItem({ image, isModal }: { image: GalleryImage, i
       <div className="flex flex-col items-center justify-center text-center">
         <div className="flex flex-col md:flex-row gap-0 md:gap-2 font-open-sans-light text-xl ">
           <span className="font-semibold">{visibleImage.title}</span>
-          <span className="hidden md:block text-[#939BBA]">|</span>
+          <span className="hidden md:block font-semibold text-[#939BBA]">|</span>
           <span className="">{visibleImage.type}</span>
         </div>
         <div className="font-open-sans-light text-[#6D6D6D]">
