@@ -8,8 +8,8 @@ export default async function ComicsPage() {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-8">
-        <Image src={data['banner']['image']} alt="Cottonwood_Banner" width={data['banner']['width']} height={data['banner']['height']} />
+      <div className="flex flex-col items-center gap-8 overflow-x-hidden">
+        <Image className="hover:scale-105 transition-transform duration-300 ease-in-out" src={data['banner']['image']} alt="Cottonwood_Banner" width={data['banner']['width']} height={data['banner']['height']} />
         <div className="flex flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-8 mx-4">
             <div className="font-open-sans-light text-center max-w-[100ch]">
@@ -38,7 +38,7 @@ export default async function ComicsPage() {
           </div>
           <div className="flex flex-col items-center gap-4 mx-4">
             <Image src={data['awards']['image']} alt="Cottonwood_Awards" width={data['awards']['width']} height={data['awards']['height']} />
-            <Image src={data['leaf']['image']} alt="Cottonwood_Leaf" width={data['leaf']['width']} height={data['leaf']['height']} />
+            <Image className="hover:scale-105 transition-transform duration-300 ease-in-out" src={data['leaf']['image']} alt="Cottonwood_Leaf" width={data['leaf']['width']} height={data['leaf']['height']} />
             <div className="font-open-sans-light text-[#6D6D6D] text-center max-w-[100ch]">
               There are more comic projects in the works, stay tuned!
             </div>

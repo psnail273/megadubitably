@@ -44,7 +44,7 @@ export default function GalleryItem({ image, isModal }: { image: GalleryImage, i
               type="button"
               onClick={(e) => handleImageSwap(e, index)}
               aria-label={`View ${item.title}`}
-              className="h-full w-auto cursor-pointer hover:opacity-80 transition-opacity"
+              className="h-full w-auto cursor-pointer hover:scale-115 transition-transform duration-150 ease-in-out"
             >
               <Image
                 src={item.image}

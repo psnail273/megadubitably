@@ -12,7 +12,9 @@ export default function Gallery({ data, path }: { data: GalleryImage[], path: st
         const slug = poster.slug;
 
         return (
-          <Link key={poster.slug} href={`/${path}/${slug}`} className="cursor-pointer w-full">
+          <Link
+            key={poster.slug} href={`/${path}/${slug}`}
+            className="cursor-pointer w-full hover:scale-105 transition-transform duration-150 ease-in-out">
             <Image
               src={poster.image}
               alt={poster.title}
