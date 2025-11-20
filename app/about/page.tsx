@@ -27,7 +27,7 @@ export default async function AboutPage() {
               too much TV (it&apos;s for work, I swear!).
             </div>
             <div className="font-open-sans-light text-[#6D6D6D] text-md">
-              For inquiries, contact me here or email me at <a className='text-[#939BBA] hover:underline' href='mailto:meg@meghardyart.com' target="_blank" rel="noopener noreferrer">meg@meghardyart.com</a>.
+              For inquiries, contact me here or email me at <a className='text-[#939BBA] hover:underline underline-offset-4' href='mailto:meg@meghardyart.com' target="_blank" rel="noopener noreferrer">meg@meghardyart.com</a>.
             </div>
           </div>
         </div>

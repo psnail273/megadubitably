@@ -22,10 +22,10 @@ export default async function ComicsPage() {
               <br />
               <br />
 
-              This project was a little ambitious for my first comic book, but over eight years later we published it via a successful Kickstarter campaign, which you can view by clicking <a href="https://www.kickstarter.com/projects/250303295/under-the-cottonwood-tree-a-latinx-fairy-tale-adve" target="_blank" rel="noopener noreferrer" className="text-[#939BBA] hover:underline font-bold">here</a>.
+              This project was a little ambitious for my first comic book, but over eight years later we published it via a successful Kickstarter campaign, which you can view by clicking <a href="https://www.kickstarter.com/projects/250303295/under-the-cottonwood-tree-a-latinx-fairy-tale-adve" target="_blank" rel="noopener noreferrer" className="text-[#939BBA] hover:underline underline-offset-4 font-bold">here</a>.
               <br />
               <br />
-              You can purchase the book via this <a href="https://www.underthecottonwoodtree.com/#buy_now" target="_blank" rel="noopener noreferrer" className="text-[#939BBA] hover:underline font-bold">link</a>.
+              You can purchase the book via this <a href="https://www.underthecottonwoodtree.com/#buy_now" target="_blank" rel="noopener noreferrer" className="text-[#939BBA] hover:underline underline-offset-4 font-bold">link</a>.
               <br />
               <br />
               Below are some selected interior pages:
@@ -33,12 +33,12 @@ export default async function ComicsPage() {
           </div>
           <div className="flex flex-col">
             {data['pages']['images'].map((image) => (
-              <Image key={image} src={image} alt="Cottonwood_Page" width={data['pages']['width']} height={data['pages']['height']} className="w-full h-auto" />
+              <Image key={image} src={image} alt="Cottonwood_Page" width={data['pages']['width']} height={data['pages']['height']} className="w-full h-auto" loading="lazy" />
             ))}
           </div>
           <div className="flex flex-col items-center gap-4 mx-4">
-            <Image src={data['awards']['image']} alt="Cottonwood_Awards" width={data['awards']['width']} height={data['awards']['height']} />
-            <Image className="hover:scale-105 transition-transform duration-300 ease-in-out" src={data['leaf']['image']} alt="Cottonwood_Leaf" width={data['leaf']['width']} height={data['leaf']['height']} />
+            <Image src={data['awards']['image']} alt="Cottonwood_Awards" width={data['awards']['width']} height={data['awards']['height']} loading="lazy" />
+            <Image className="hover:scale-105 transition-transform duration-300 ease-in-out" src={data['leaf']['image']} alt="Cottonwood_Leaf" width={data['leaf']['width']} height={data['leaf']['height']} loading="lazy" />
             <div className="font-open-sans-light text-[#6D6D6D] text-center max-w-[100ch]">
               There are more comic projects in the works, stay tuned!
             </div>

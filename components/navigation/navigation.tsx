@@ -38,7 +38,7 @@ export default function Navigation() {
       </div>
       <div className="hidden lg:flex flex-row justify-end items-center gap-8 ">
         {navLinks.map((link) => (
-          <Link key={link.href} href={link.href} className={`font-open-sans-light tracking-wider uppercase hover:opacity-50 ${
+          <Link key={link.href} href={link.href} className={`font-open-sans-light tracking-wider uppercase hover:opacity-50 active:scale-105 transition-opacity ${
             (link.href === '/' ? (pathname === '/' || pathname.startsWith('/poster')) : pathname.startsWith(link.href))
               ? 'text-[#939BBA] underline underline-offset-4'
               : 'text-black'
@@ -47,14 +47,14 @@ export default function Navigation() {
           </Link>
         ))}
         {socialLinks.map((link) => (
-          <Link key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">
-            <Image src={link.icon} alt={link.label} width={24} height={24} className="hover:opacity-50"/>
+          <Link key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="hover:opacity-50 active:scale-105 transition-opacity">
+            <Image src={link.icon} alt={link.label} width={24} height={24} />
           </Link>
         ))}
       </div>
       <div className="flex lg:hidden flex-col justify-center items-center">
-        <button onClick={() => setMenuOpen(!menuOpen)}> 
-          <Image src='/menu.svg' alt='Menu' width={32} height={32} className="hover:opacity-50"/>
+        <button onClick={() => setMenuOpen(!menuOpen)} className="hover:opacity-50 active:scale-105 transition-opacity">
+          <Image src={menuOpen ? '/close.svg' : '/menu.svg'} alt='Menu' width={32} height={32} />
         </button>
       </div>
       {menuOpen && (
@@ -65,7 +65,7 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`font-open-sans-light tracking-wider uppercase hover:opacity-50 ${
+                className={`font-open-sans-light tracking-wider uppercase hover:opacity-50 active:scale-105 origin-left transition-all ${
                   (link.href === '/' ? (pathname === '/' || pathname.startsWith('/poster')) : pathname.startsWith(link.href))
                     ? 'text-[#939BBA] underline underline-offset-4'
                     : 'text-black'
@@ -76,14 +76,15 @@ export default function Navigation() {
             ))}
             <div className="flex flex-row gap-8 pt-2">
               {socialLinks.map((link) => (
-                <Link 
-                  key={link.href} 
-                  href={link.href} 
-                  target="_blank" 
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMenuOpen(false)}
+                  className="hover:opacity-50 active:scale-105 origin-left transition-opacity"
                 >
-                  <Image src={link.icon} alt={link.label} width={24} height={24} className="hover:opacity-50"/>
+                  <Image src={link.icon} alt={link.label} width={24} height={24} />
                 </Link>
               ))}
             </div>

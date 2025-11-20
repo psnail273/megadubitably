@@ -45,7 +45,7 @@ export default function Contact() {
     <div className="flex flex-col gap-4 w-full">
       
       <form action={formAction} className="flex flex-col gap-4 w-full">
-        <div className="grid grid-cols-1md:grid-cols-2 border border-[#6D6D6D]">
+        <div className="grid grid-cols-1 md:grid-cols-2 border border-[#6D6D6D]">
           <input
             className="md:col-span-1 border border-[#6D6D6D] p-4 text-[#6D6D6D]"
             type="text"

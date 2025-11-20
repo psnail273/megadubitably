@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import type { GalleryImage } from '@/types/galleryImage';
 import GalleryItem from '../gallery/galleryItem';
 import Image from 'next/image';
@@ -18,6 +19,30 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
 
   const router = useRouter();
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        router.back();
+      } else if (e.key === 'ArrowLeft') {
+        router.replace(`/${path}/${previousSlug}`);
+      } else if (e.key === 'ArrowRight') {
+        router.replace(`/${path}/${nextSlug}`);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [router, path, previousSlug, nextSlug]);
+
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
   function handlePrevious(e: React.MouseEvent<HTMLAnchorElement>) {
     e.stopPropagation();
   }
@@ -32,11 +57,11 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
       onClick={() => router.back()}
     >
       <div className="flex flex-1 flex-row w-auto h-full justify-between">
-        <Link className="flex h-full hover:opacity-50" href={`/${path}/${previousSlug}`} replace onClick={handlePrevious}>
+        <Link className="flex h-full hover:opacity-50 active:opacity-70 p-4 transition-opacity" href={`/${path}/${previousSlug}`} replace onClick={handlePrevious}>
           <Image src={'/chevron-left.svg'} alt='back' width={48} height={48} />
         </Link>
         <GalleryItem image={data[index]} isModal={true} />
-        <Link className="flex h-full hover:opacity-50" href={`/${path}/${nextSlug}`} replace onClick={handleNext}>
+        <Link className="flex h-full hover:opacity-50 active:opacity-70 p-4 transition-opacity" href={`/${path}/${nextSlug}`} replace onClick={handleNext}>
           <Image src={'/chevron-right.svg'} alt='next' width={48} height={48}/>
         </Link>
       </div>

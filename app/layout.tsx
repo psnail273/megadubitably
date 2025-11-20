@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={'antialiased h-full flex flex-col'}>
         <MuiRegistry>
           <Navigation />
-          <div className="flex-1 ">
+          <div className="flex-1">
             {children}
           </div>
         </MuiRegistry>
