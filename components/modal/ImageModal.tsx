@@ -17,6 +17,8 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
   const previousSlug = index === 0 ? data[data.length - 1].slug : data[index - 1].slug
   const nextSlug = index === data.length - 1 ? data[0].slug : data[index + 1].slug
 
+  const chevronSize = 48;
+
   const router = useRouter();
 
   useEffect(() => {
@@ -58,11 +60,11 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
     >
       <div className="flex flex-1 flex-row w-auto h-full justify-between">
         <Link className="flex h-full hover:opacity-50 active:opacity-70 transition-opacity" href={`/${path}/${previousSlug}`} replace onClick={handlePrevious}>
-          <Image src={'/chevron-left.svg'} alt='back' width={48} height={48} />
+          <Image src={'/chevron-left.svg'} alt='back' width={chevronSize} height={chevronSize} />
         </Link>
-        <GalleryItem image={data[index]} isModal={true} />
+        <GalleryItem image={data[index]} isModal={true} chevronSize={chevronSize} />
         <Link className="flex h-full hover:opacity-50 active:opacity-70  transition-opacity" href={`/${path}/${nextSlug}`} replace onClick={handleNext}>
-          <Image src={'/chevron-right.svg'} alt='next' width={48} height={48}/>
+          <Image src={'/chevron-right.svg'} alt='next' width={chevronSize} height={chevronSize}/>
         </Link>
       </div>
     </div>

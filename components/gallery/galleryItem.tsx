@@ -4,7 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import { GalleryImage } from '@/types/galleryImage';
 import Image from 'next/image';
 
-export default function GalleryItem({ image, isModal }: { image: GalleryImage, isModal?: boolean }) {
+export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image: GalleryImage, isModal?: boolean, chevronSize: number }) {
+  const CONTAINER_VERTICAL_PADDING = 4;
+  const CONTAINER_GAP = 4;
+
   const [visibleImage, setVisibleImage] = useState(image);
   const [extra, setExtra] = useState(image.extra);
   const [currentIndex, setCurrentIndex] = useState(-1);
@@ -40,31 +43,31 @@ export default function GalleryItem({ image, isModal }: { image: GalleryImage, i
       let availableWidth: number;
       let availableHeight: number;
 
+      // If in modal, the entire screen is available
       if (isModal) {
-        // In modal, leave space for chevron buttons (48px each + some padding)
-        const chevronSpace = 48 * 2; // 48px per chevron
-        availableWidth = window.innerWidth - chevronSpace;
-        availableHeight = window.innerHeight;
+        // Just subtract the next buttons from the width
+        availableWidth = window.innerWidth - (chevronSize * 2);
+        availableHeight = window.innerHeight - (CONTAINER_VERTICAL_PADDING * 2);
       } else {
-        // Not in modal, calculate space available in the viewport
+        // If not in modal, calculate space available from top most container
         if (containerRef.current) {
           const rect = containerRef.current.getBoundingClientRect();
           availableWidth = window.innerWidth;
           // Available height is from the top of the container to the bottom of the viewport
-          availableHeight = window.innerHeight - rect.top;
+          availableHeight = window.innerHeight - rect.top - (CONTAINER_VERTICAL_PADDING * 2);
         } else {
           // Fallback if ref not available yet
           availableWidth = window.innerWidth;
-          availableHeight = window.innerHeight;
+          availableHeight = window.innerHeight - (CONTAINER_VERTICAL_PADDING * 2);
         }
       }
 
-      // Measure the text div height if it exists
+      // Measure the text div height
       const textHeight = textDivRef.current?.offsetHeight || 0;
 
-      // Calculate available space for image (total height minus text div height)
+      // Calculate available space for image (total height minus text div height and gap)
       const maxWidth = availableWidth;
-      const maxHeight = availableHeight - textHeight;
+      const maxHeight = availableHeight - textHeight - CONTAINER_GAP;
 
       const aspectRatio = visibleImage.width / visibleImage.height;
 
@@ -95,7 +98,7 @@ export default function GalleryItem({ image, isModal }: { image: GalleryImage, i
     updateDimensions();
     window.addEventListener('resize', updateDimensions);
     return () => window.removeEventListener('resize', updateDimensions);
-  }, [visibleImage.width, visibleImage.height, isModal]);
+  }, [visibleImage.width, visibleImage.height, isModal, chevronSize]);
 
   useEffect(() => {
     if (!isModal || !extra || extra.length === 0) return;
@@ -143,10 +146,10 @@ export default function GalleryItem({ image, isModal }: { image: GalleryImage, i
       }
 
       const containerHeight = isModal
-        ? window.innerHeight
-        : window.innerHeight - containerRef.current.getBoundingClientRect().top;
+        ? window.innerHeight - (CONTAINER_VERTICAL_PADDING * 2)
+        : window.innerHeight - containerRef.current.getBoundingClientRect().top - (CONTAINER_VERTICAL_PADDING * 2);
 
-      const contentHeight = dimensions.divHeight + textDivRef.current.offsetHeight;
+      const contentHeight = dimensions.divHeight + textDivRef.current.offsetHeight + CONTAINER_GAP;
       const calculatedMargin = Math.max(0, (containerHeight - contentHeight) / 2);
 
       setTopMargin(calculatedMargin);
@@ -158,8 +161,8 @@ export default function GalleryItem({ image, isModal }: { image: GalleryImage, i
   }, [dimensions.divHeight, isModal]);
 
   return (
-    <div ref={containerRef}>
-      <div style={{ marginTop: `${topMargin}px`, marginLeft: 'auto', marginRight: 'auto', width: 'fit-content' }}>
+    <div ref={containerRef} style={{ paddingTop: `${CONTAINER_VERTICAL_PADDING}px`, paddingBottom: `${CONTAINER_VERTICAL_PADDING}px`, display: 'flex', flexDirection: 'column', gap: `${CONTAINER_GAP}px` }}>
+      <div style={{ marginTop: `${topMargin}px`, marginLeft: 'auto', marginRight: 'auto', width: 'fit-content', display: 'flex', flexDirection: 'column', gap: `${CONTAINER_GAP}px` }}>
         <div
           style={{
             width: `${dimensions.divWidth}px`,
