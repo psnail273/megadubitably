@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { GalleryImage } from '@/types/galleryImage';
 import Image from 'next/image';
 
@@ -8,6 +8,15 @@ export default function GalleryItem({ image, isModal }: { image: GalleryImage, i
   const [visibleImage, setVisibleImage] = useState(image);
   const [extra, setExtra] = useState(image.extra);
   const [currentIndex, setCurrentIndex] = useState(-1);
+  const [dimensions, setDimensions] = useState<{
+    divWidth: number,
+    divHeight: number,
+    imageWidth: number,
+    imageHeight: number
+  }>({ divWidth: 0, divHeight: 0, imageWidth: 0, imageHeight: 0 });
+  const [topMargin, setTopMargin] = useState(0);
+  const textDivRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleImageSwap = (e: React.MouseEvent<HTMLButtonElement>, index: number) => {
     e.stopPropagation();
@@ -25,6 +34,68 @@ export default function GalleryItem({ image, isModal }: { image: GalleryImage, i
     const newPath = window.location.pathname.replace(/\/[^/]+$/, `/${clickedImage.slug}`);
     window.history.replaceState(null, '', newPath);
   };
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      let availableWidth: number;
+      let availableHeight: number;
+
+      if (isModal) {
+        // In modal, leave space for chevron buttons (48px each + some padding)
+        const chevronSpace = 48 * 2; // 48px per chevron
+        availableWidth = window.innerWidth - chevronSpace;
+        availableHeight = window.innerHeight;
+      } else {
+        // Not in modal, calculate space available in the viewport
+        if (containerRef.current) {
+          const rect = containerRef.current.getBoundingClientRect();
+          availableWidth = window.innerWidth;
+          // Available height is from the top of the container to the bottom of the viewport
+          availableHeight = window.innerHeight - rect.top;
+        } else {
+          // Fallback if ref not available yet
+          availableWidth = window.innerWidth;
+          availableHeight = window.innerHeight;
+        }
+      }
+
+      // Measure the text div height if it exists
+      const textHeight = textDivRef.current?.offsetHeight || 0;
+
+      // Calculate available space for image (total height minus text div height)
+      const maxWidth = availableWidth;
+      const maxHeight = availableHeight - textHeight;
+
+      const aspectRatio = visibleImage.width / visibleImage.height;
+
+      // Calculate what the width would be if constrained by height
+      const widthIfHeightConstrained = maxHeight * aspectRatio;
+
+      // Determine which dimension is the limiting factor
+      if (widthIfHeightConstrained <= maxWidth) {
+        // Height is the limiting factor
+        setDimensions({
+          divWidth: widthIfHeightConstrained,
+          divHeight: maxHeight,
+          imageWidth: Math.round(widthIfHeightConstrained),
+          imageHeight: Math.round(maxHeight)
+        });
+      } else {
+        // Width is the limiting factor
+        const heightIfWidthConstrained = maxWidth / aspectRatio;
+        setDimensions({
+          divWidth: maxWidth,
+          divHeight: heightIfWidthConstrained,
+          imageWidth: Math.round(maxWidth),
+          imageHeight: Math.round(heightIfWidthConstrained)
+        });
+      }
+    };
+
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, [visibleImage.width, visibleImage.height, isModal]);
 
   useEffect(() => {
     if (!isModal || !extra || extra.length === 0) return;
@@ -64,50 +135,55 @@ export default function GalleryItem({ image, isModal }: { image: GalleryImage, i
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isModal, extra, visibleImage, currentIndex]);
 
+  useEffect(() => {
+    const updateMargin = () => {
+      if (!containerRef.current || !textDivRef.current) {
+        setTopMargin(0);
+        return;
+      }
+
+      const containerHeight = isModal
+        ? window.innerHeight
+        : window.innerHeight - containerRef.current.getBoundingClientRect().top;
+
+      const contentHeight = dimensions.divHeight + textDivRef.current.offsetHeight;
+      const calculatedMargin = Math.max(0, (containerHeight - contentHeight) / 2);
+
+      setTopMargin(calculatedMargin);
+    };
+
+    updateMargin();
+    window.addEventListener('resize', updateMargin);
+    return () => window.removeEventListener('resize', updateMargin);
+  }, [dimensions.divHeight, isModal]);
+
   return (
-    <div className={'flex flex-col w-full gap-3 justify-center'}>
-      <div className={`flex flex-row items-center justify-center ${extra && extra.length > 0 ? 'max-h-[54vh] sm:max-h-[67vh]' : 'max-h-[64vh] sm:max-h-[77vh]'} `}>
-        <Image
-          src={visibleImage.image}
-          alt={visibleImage.title}
-          width={visibleImage.width}
-          height={visibleImage.height}
-          className="flex-1 object-contain w-auto h-full "
-        />
-      </div>
-      
-      {extra && extra.length > 0 && (
-        <div className='flex flex-row items-center justify-center gap-1 max-h-[10vh]'>
-          {extra.map((item, index) => (
-            <button
-              key={item.slug}
-              type="button"
-              onClick={(e) => handleImageSwap(e, index)}
-              aria-label={`View ${item.title}`}
-              className="h-full w-auto cursor-pointer hover:scale-115 active:scale-105 transition-transform duration-150 ease-in-out"
-            >
-              <Image
-                src={item.image}
-                alt={item.title}
-                width={item.width}
-                height={item.height}
-                className="object-contain w-auto h-full" />
-            </button>
-          ))}
+    <div ref={containerRef}>
+      <div style={{ marginTop: `${topMargin}px`, marginLeft: 'auto', marginRight: 'auto', width: 'fit-content' }}>
+        <div
+          style={{
+            width: `${dimensions.divWidth}px`,
+            height: `${dimensions.divHeight}px`
+          }}
+        >
+          <Image
+            src={visibleImage.image}
+            alt={visibleImage.title}
+            width={dimensions.imageWidth}
+            height={dimensions.imageHeight}
+          />
         </div>
-      )}
-      
-      <div className="flex flex-col items-center justify-center text-center">
-        <div className="flex flex-col md:flex-row gap-0 md:gap-2 font-open-sans-light text-xl ">
-          <span className="font-semibold">{visibleImage.title}</span>
-          <span className="hidden md:block font-semibold text-[#939BBA]">|</span>
-          <span className="">{visibleImage.type}</span>
-        </div>
-        <div className="font-open-sans-light text-[#6D6D6D]">
-          {visibleImage.description}
+        <div ref={textDivRef}>
+          <div className="flex flex-col md:flex-row gap-0 md:gap-2 font-open-sans-light text-xl ">
+            <span className="font-semibold">{visibleImage.title}</span>
+            <span className="hidden md:block font-semibold text-[#939BBA]">|</span>
+            <span className="">{visibleImage.type}</span>
+          </div>
+          <div className="font-open-sans-light text-[#6D6D6D]">
+            {visibleImage.description}
+          </div>
         </div>
       </div>
-      
     </div>
   );
 }
