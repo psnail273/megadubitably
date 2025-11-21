@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { GalleryImage } from '@/types/galleryImage';
 import GalleryItem from '../gallery/galleryItem';
 import Image from 'next/image';
@@ -17,7 +17,25 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
   const previousSlug = index === 0 ? data[data.length - 1].slug : data[index - 1].slug
   const nextSlug = index === data.length - 1 ? data[0].slug : data[index + 1].slug
 
-  const chevronSize = 32;
+  const [chevronSize, setChevronSize] = useState(48);
+
+  useEffect(() => {
+    const updateChevronSize = () => {
+      if (window.innerWidth >= 1024) {
+        setChevronSize(64);
+      } else if (window.innerWidth >= 768) {
+        setChevronSize(48);
+      } else if (window.innerWidth >= 640) {
+        setChevronSize(32);
+      } else {
+        setChevronSize(16);
+      }
+    };
+
+    updateChevronSize();
+    window.addEventListener('resize', updateChevronSize);
+    return () => window.removeEventListener('resize', updateChevronSize);
+  }, []);
 
   const router = useRouter();
 
@@ -98,11 +116,11 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
       onClick={() => router.back()}
     >
       <div className="flex flex-1 flex-row w-auto h-full justify-between">
-        <Link className="flex h-full hover:opacity-50 active:opacity-70 transition-opacity" href={`/${path}/${previousSlug}`} replace onClick={handlePrevious}>
+        <Link className="flex h-full hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus:bg-[#6D6D6D]/40 active:bg-[#6D6D6D]/40 transition-all duration-200" href={`/${path}/${previousSlug}`} replace onClick={handlePrevious}>
           <Image src={'/chevron-left.svg'} alt='back' width={chevronSize} height={chevronSize} />
         </Link>
         <GalleryItem image={data[index]} isModal={true} chevronSize={chevronSize} />
-        <Link className="flex h-full hover:opacity-50 active:opacity-70  transition-opacity" href={`/${path}/${nextSlug}`} replace onClick={handleNext}>
+        <Link className="flex h-full hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus:bg-[#6D6D6D]/40 active:bg-[#6D6D6D]/40 transition-all duration-200" href={`/${path}/${nextSlug}`} replace onClick={handleNext}>
           <Image src={'/chevron-right.svg'} alt='next' width={chevronSize} height={chevronSize}/>
         </Link>
       </div>
