@@ -6,8 +6,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image: GalleryImage, isModal?: boolean, chevronSize: number }) {
-  const CONTAINER_VERTICAL_PADDING = 8;
-  const CONTAINER_GAP = 4;
+  const CONTAINER_VERTICAL_PADDING = 24;
+  const CONTAINER_GAP = 8;
   const EXTRA_IMAGES_SIDE_WIDTH = 200; // Width when positioned to the right
   const EXTRA_IMAGES_BOTTOM_HEIGHT = 150; // Height when positioned below
 
