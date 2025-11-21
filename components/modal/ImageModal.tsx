@@ -17,7 +17,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
   const previousSlug = index === 0 ? data[data.length - 1].slug : data[index - 1].slug
   const nextSlug = index === data.length - 1 ? data[0].slug : data[index + 1].slug
 
-  const chevronSize = 48;
+  const chevronSize = 32;
 
   const router = useRouter();
 
@@ -44,6 +44,45 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
       document.body.style.overflow = originalOverflow;
     };
   }, []);
+
+  useEffect(() => {
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const minSwipeDistance = 50; // Minimum distance in pixels for a swipe
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    };
+
+    const handleSwipe = () => {
+      const swipeDistance = touchEndX - touchStartX;
+
+      if (Math.abs(swipeDistance) < minSwipeDistance) {
+        return; // Swipe too short, ignore
+      }
+
+      if (swipeDistance > 0) {
+        // Swipe right - go to previous
+        router.replace(`/${path}/${previousSlug}`);
+      } else {
+        // Swipe left - go to next
+        router.replace(`/${path}/${nextSlug}`);
+      }
+    };
+
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [router, path, previousSlug, nextSlug]);
 
   function handlePrevious(e: React.MouseEvent<HTMLAnchorElement>) {
     e.stopPropagation();
