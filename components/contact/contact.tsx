@@ -44,7 +44,7 @@ export default function Contact() {
   return (
     <div className="flex flex-col gap-4 w-full">
       
-      <form action={formAction} className="flex flex-col gap-4 w-full">
+      <form action={formAction} className="flex flex-col gap-4 w-full mb-4">
         <div className="grid grid-cols-1 md:grid-cols-2 border border-[#6D6D6D]">
           <input
             className="md:col-span-1 border border-[#6D6D6D] p-4 text-[#6D6D6D]"
@@ -59,7 +59,7 @@ export default function Contact() {
           />
           <input
             className="md:col-span-1 border border-[#6D6D6D] p-4 text-[#6D6D6D]"
-            type="text"
+            type="email"
             name="email"
             id="email"
             placeholder="Email"

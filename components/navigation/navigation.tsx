@@ -53,7 +53,7 @@ export default function Navigation() {
         ))}
       </div>
       <div className="flex lg:hidden flex-col justify-center items-center">
-        <button onClick={() => setMenuOpen(!menuOpen)} className="hover:opacity-50 active:scale-105 transition-opacity">
+        <button aria-label={menuOpen ? 'Close Menu' : 'Open Menu'} onClick={() => setMenuOpen(!menuOpen)} className="hover:opacity-50 active:scale-105 transition-opacity">
           <Image src={menuOpen ? '/close.svg' : '/menu.svg'} alt='Menu' width={32} height={32} />
         </button>
       </div>

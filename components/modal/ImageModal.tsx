@@ -24,11 +24,11 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
       if (window.innerWidth >= 1024) {
         setChevronSize(64);
       } else if (window.innerWidth >= 768) {
-        setChevronSize(48);
+        setChevronSize(56);
       } else if (window.innerWidth >= 640) {
-        setChevronSize(32);
+        setChevronSize(48);
       } else {
-        setChevronSize(16);
+        setChevronSize(32);
       }
     };
 
@@ -66,10 +66,12 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
   useEffect(() => {
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartTarget: EventTarget | null = null;
     const minSwipeDistance = 50; // Minimum distance in pixels for a swipe
 
     const handleTouchStart = (e: TouchEvent) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartTarget = e.target;
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
@@ -78,6 +80,14 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
     };
 
     const handleSwipe = () => {
+      // Check if the touch started inside an extra images container
+      if (touchStartTarget instanceof Element) {
+        const extraImagesContainer = touchStartTarget.closest('[data-extra-images-container="true"]');
+        if (extraImagesContainer) {
+          return; // Don't navigate if swipe started in extra images container
+        }
+      }
+
       const swipeDistance = touchEndX - touchStartX;
 
       if (Math.abs(swipeDistance) < minSwipeDistance) {

@@ -239,6 +239,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
           {/* Extra images thumbnails - Side position */}
           {extra && extra.length > 0 && extraImagesPosition === 'side' && (
             <div
+              data-extra-images-container="true"
               style={{
                 width: `${EXTRA_IMAGES_SIDE_WIDTH}px`,
                 maxHeight: `${dimensions.divHeight}px`,
@@ -293,6 +294,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
         {/* Extra images thumbnails - Bottom position */}
         {extra && extra.length > 0 && extraImagesPosition === 'bottom' && (
           <div
+            data-extra-images-container="true"
             style={{
               height: `${EXTRA_IMAGES_BOTTOM_HEIGHT}px`,
               maxWidth: `${dimensions.divWidth}px`,
@@ -339,7 +341,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
                     alt={extraImage.title}
                     width={thumbWidth}
                     height={thumbHeight}
-                    style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
+                    // style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </button>
               );
