@@ -12,7 +12,7 @@ export default async function ComicsPage() {
         <Image className="hover:scale-105 transition-transform duration-300 ease-in-out" src={data['banner']['image']} alt="Cottonwood_Banner" width={data['banner']['width']} height={data['banner']['height']} />
         <div className="flex flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-8 mx-4">
-            <div className="font-open-sans-light text-center max-w-[100ch]">
+            <div className="font-open-sans-light text-[#6D6D6D] text-center max-w-[100ch]">
               Once upon a time in the land of enchantment...
               <br />
             </div>
