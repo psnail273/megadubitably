@@ -9,7 +9,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
   const CONTAINER_VERTICAL_PADDING = 24;
   const CONTAINER_GAP = 8;
   const EXTRA_IMAGES_SIDE_WIDTH = 200; // Width when positioned to the right
-  const EXTRA_IMAGES_BOTTOM_HEIGHT = 150; // Height when positioned below
+  const EXTRA_IMAGES_BOTTOM_HEIGHT = 64; // Height when positioned below
 
   const router = useRouter();
   const [visibleImage, setVisibleImage] = useState(image);
@@ -74,31 +74,74 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
       let positionMode: 'side' | 'bottom' = 'bottom';
       let maxWidth = availableWidth;
       let maxHeight = availableHeight;
+      const aspectRatio = visibleImage.width / visibleImage.height;
 
       if (hasExtraImages) {
-        // Check if we're on medium screens or larger (768px+) AND have enough width
-        const isMediumOrLarger = window.innerWidth >= 768;
         const spaceForSideImages = EXTRA_IMAGES_SIDE_WIDTH + CONTAINER_GAP;
 
-        if (isMediumOrLarger && availableWidth >= spaceForSideImages) {
-          // Position to the side - reduce available width
-          maxWidth = availableWidth - spaceForSideImages;
-          positionMode = 'side';
-          // Subtract text height and gap for side layout
-          maxHeight = availableHeight - textHeight - CONTAINER_GAP;
+        console.log('=== Layout Calculation ===');
+        console.log('Available:', { availableWidth, availableHeight });
+        console.log('Text height:', textHeight);
+        console.log('Aspect ratio:', aspectRatio);
+
+        // Calculate how much space we'd have for main image with side layout
+        const widthWithSideImages = availableWidth - spaceForSideImages;
+        const heightWithSideImages = availableHeight - textHeight - CONTAINER_GAP;
+
+        // Calculate how much space we'd have for main image with bottom layout
+        const widthWithBottomImages = availableWidth;
+        const heightWithBottomImages = availableHeight - EXTRA_IMAGES_BOTTOM_HEIGHT - CONTAINER_GAP - textHeight - CONTAINER_GAP;
+
+        console.log('Side layout space:', { widthWithSideImages, heightWithSideImages });
+        console.log('Bottom layout space:', { widthWithBottomImages, heightWithBottomImages });
+
+        // Calculate the actual main image dimensions for side layout
+        let sideLayoutImageWidth, sideLayoutImageHeight;
+        const sideWidthIfHeightConstrained = heightWithSideImages * aspectRatio;
+        if (sideWidthIfHeightConstrained <= widthWithSideImages) {
+          sideLayoutImageWidth = sideWidthIfHeightConstrained;
+          sideLayoutImageHeight = heightWithSideImages;
         } else {
-          // Position to the bottom - reduce available height for both extra images and text
-          positionMode = 'bottom';
-          // Need space for: main image + gap + extra images + gap + text
-          maxHeight = availableHeight - EXTRA_IMAGES_BOTTOM_HEIGHT - CONTAINER_GAP - textHeight - CONTAINER_GAP;
+          sideLayoutImageWidth = widthWithSideImages;
+          sideLayoutImageHeight = widthWithSideImages / aspectRatio;
         }
+        const sideLayoutArea = sideLayoutImageWidth * sideLayoutImageHeight;
+
+        // Calculate the actual main image dimensions for bottom layout
+        let bottomLayoutImageWidth, bottomLayoutImageHeight;
+        const bottomWidthIfHeightConstrained = heightWithBottomImages * aspectRatio;
+        if (bottomWidthIfHeightConstrained <= widthWithBottomImages) {
+          bottomLayoutImageWidth = bottomWidthIfHeightConstrained;
+          bottomLayoutImageHeight = heightWithBottomImages;
+        } else {
+          bottomLayoutImageWidth = widthWithBottomImages;
+          bottomLayoutImageHeight = widthWithBottomImages / aspectRatio;
+        }
+        const bottomLayoutArea = bottomLayoutImageWidth * bottomLayoutImageHeight;
+
+        console.log('Side layout image:', { width: sideLayoutImageWidth, height: sideLayoutImageHeight, area: sideLayoutArea });
+        console.log('Bottom layout image:', { width: bottomLayoutImageWidth, height: bottomLayoutImageHeight, area: bottomLayoutArea });
+
+        // Choose the layout that gives us the larger main image
+        if (sideLayoutArea > bottomLayoutArea && widthWithSideImages >= 400) {
+          // Position to the side - gives us a larger image
+          maxWidth = widthWithSideImages;
+          maxHeight = heightWithSideImages;
+          positionMode = 'side';
+          console.log('✓ CHOSEN: SIDE layout');
+        } else {
+          // Position to the bottom
+          maxWidth = widthWithBottomImages;
+          maxHeight = heightWithBottomImages;
+          positionMode = 'bottom';
+          console.log('✓ CHOSEN: BOTTOM layout');
+        }
+        console.log('=========================');
         setExtraImagesPosition(positionMode);
       } else {
         // No extra images, just account for text
         maxHeight = availableHeight - textHeight - CONTAINER_GAP;
       }
-
-      const aspectRatio = visibleImage.width / visibleImage.height;
 
       // Calculate what the width would be if constrained by height
       const widthIfHeightConstrained = maxHeight * aspectRatio;
@@ -174,9 +217,13 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
         return;
       }
 
-      const containerHeight = isModal
-        ? window.innerHeight - (CONTAINER_VERTICAL_PADDING * 2)
-        : window.innerHeight - containerRef.current.getBoundingClientRect().top - (CONTAINER_VERTICAL_PADDING * 2);
+      // If not in modal, no top margin needed
+      if (!isModal) {
+        setTopMargin(0);
+        return;
+      }
+
+      const containerHeight = window.innerHeight - (CONTAINER_VERTICAL_PADDING * 2);
 
       let contentHeight = dimensions.divHeight + textDivRef.current.offsetHeight + CONTAINER_GAP;
 
@@ -196,14 +243,23 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
   }, [dimensions.divHeight, isModal, extra, extraImagesPosition]);
 
   return (
-    <div 
-      ref={containerRef} 
-      style={{ paddingTop: `${CONTAINER_VERTICAL_PADDING}px`, paddingBottom: `${CONTAINER_VERTICAL_PADDING}px` }}
+    <div
+      ref={containerRef}
+      style={{
+        paddingTop: isModal ? `${CONTAINER_VERTICAL_PADDING}px` : '0',
+        paddingBottom: `${CONTAINER_VERTICAL_PADDING}px`
+      }}
       onClick={(e) => (e.stopPropagation())}
     >
       <div style={{ marginTop: `${topMargin}px`, marginLeft: 'auto', marginRight: 'auto', width: 'fit-content' }}>
         {/* Main image and extra images container */}
-        <div style={{ position: 'relative' }}>
+        <div style={{
+          position: 'relative',
+          width: extraImagesPosition === 'side' && extra && extra.length > 0
+            ? `${dimensions.divWidth + EXTRA_IMAGES_SIDE_WIDTH + CONTAINER_GAP}px`
+            : `${dimensions.divWidth}px`,
+          whiteSpace: 'nowrap'
+        }}>
           {/* Main image */}
           <div
             style={{
@@ -265,9 +321,8 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
                       height: `${thumbHeight}px`,
                       cursor: 'pointer',
                       transition: 'opacity 0.2s ease',
-                      // opacity: isCurrentlyVisible ? 0.6 : 1,
-                      // display: 'block',
-                      // marginBottom: index < extra.length - 1 ? `${CONTAINER_GAP}px` : '0'
+                      display: 'block',
+                      marginBottom: index < extra.length - 1 ? `${CONTAINER_GAP}px` : '0'
                     }}
                     onMouseEnter={(e) => {
                       if (!isCurrentlyVisible) {
@@ -350,8 +405,15 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
         )}
 
         {/* Text description */}
-        <div 
-          ref={textDivRef} style={{ marginTop: `${CONTAINER_GAP}px` }}>
+        <div
+          ref={textDivRef}
+          style={{
+            marginTop: `${CONTAINER_GAP}px`,
+            maxWidth: extraImagesPosition === 'side'
+              ? `${dimensions.divWidth + EXTRA_IMAGES_SIDE_WIDTH + CONTAINER_GAP}px`
+              : `${dimensions.divWidth}px`
+          }}
+        >
           <div className="flex flex-col md:flex-row gap-0 md:gap-2 font-open-sans-light text-xl ">
             <span className="font-semibold">{visibleImage.title}</span>
             <span className="hidden md:block font-semibold text-[#939BBA]">|</span>

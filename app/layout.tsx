@@ -29,9 +29,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${openSansLight.variable} ${playfairDisplaySc.variable} h-full`}>
       <body className={'antialiased h-full flex flex-col'}>
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
         <MuiRegistry>
           <Navigation />
           <main id="main-content" className="flex-1">
