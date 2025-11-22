@@ -5,7 +5,7 @@ import { GalleryImage } from '@/types/galleryImage';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image: GalleryImage, isModal?: boolean, chevronSize: number }) {
+export default function GalleryItem({ image, isModal, chevronSize = 0, path }: { image: GalleryImage, isModal?: boolean, chevronSize: number, path?: string }) {
   const CONTAINER_VERTICAL_PADDING = 24;
   const CONTAINER_GAP = 8;
   const EXTRA_IMAGES_SIDE_WIDTH = 192; // Width when positioned to the right
@@ -56,10 +56,16 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
         // If not in modal, calculate space available from top most container
         if (containerRef.current) {
           const rect = containerRef.current.getBoundingClientRect();
+          console.log('🔍 Container rect:', {
+            top: rect.top,
+            height: rect.height,
+            windowHeight: window.innerHeight
+          });
           // Account for left and right padding
           availableWidth = window.innerWidth - (CONTAINER_GAP * 2);
           // Available height is from the top of the container to the bottom of the viewport minus bottom padding
           availableHeight = window.innerHeight - rect.top - CONTAINER_GAP;
+          console.log('🔍 Calculated availableHeight:', window.innerHeight, '-', rect.top, '-', CONTAINER_GAP, '=', availableHeight);
         } else {
           // Fallback if ref not available yet
           availableWidth = window.innerWidth - (CONTAINER_GAP * 2);
@@ -67,8 +73,17 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
         }
       }
 
-      // Measure the text div height
-      const textHeight = textDivRef.current?.offsetHeight || 0;
+      // Measure the text div height at full available width to avoid layout circularity
+      let textHeight = 0;
+      if (textDivRef.current) {
+        const textDiv = textDivRef.current;
+        const originalMaxWidth = textDiv.style.maxWidth;
+        // Temporarily set to full available width to get accurate measurement
+        textDiv.style.maxWidth = `${availableWidth}px`;
+        textHeight = textDiv.offsetHeight;
+        // Restore original
+        textDiv.style.maxWidth = originalMaxWidth;
+      }
 
       // Determine if extra images exist and where they should be positioned
       const hasExtraImages = extra && extra.length > 0;
@@ -141,15 +156,27 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
         setExtraImagesPosition(positionMode);
       } else {
         // No extra images, just account for text
+        console.log('=== NO EXTRA IMAGES - Layout Calculation ===');
+        console.log('Available:', { availableWidth, availableHeight });
+        console.log('Text height:', textHeight);
+        console.log('Aspect ratio:', aspectRatio);
+        console.log('maxWidth:', maxWidth);
+        console.log('maxHeight (availableHeight - textHeight - gap):', availableHeight, '-', textHeight, '-', CONTAINER_GAP, '=', availableHeight - textHeight - CONTAINER_GAP);
         maxHeight = availableHeight - textHeight - CONTAINER_GAP;
       }
 
       // Calculate what the width would be if constrained by height
       const widthIfHeightConstrained = maxHeight * aspectRatio;
 
+      console.log('Final calculation:');
+      console.log('  maxWidth:', maxWidth, 'maxHeight:', maxHeight);
+      console.log('  widthIfHeightConstrained:', widthIfHeightConstrained);
+
       // Determine which dimension is the limiting factor
       if (widthIfHeightConstrained <= maxWidth) {
         // Height is the limiting factor
+        console.log('  → HEIGHT is limiting factor');
+        console.log('  → Setting divWidth:', widthIfHeightConstrained, 'divHeight:', maxHeight);
         setDimensions({
           divWidth: widthIfHeightConstrained,
           divHeight: maxHeight,
@@ -159,6 +186,8 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
       } else {
         // Width is the limiting factor
         const heightIfWidthConstrained = maxWidth / aspectRatio;
+        console.log('  → WIDTH is limiting factor');
+        console.log('  → Setting divWidth:', maxWidth, 'divHeight:', heightIfWidthConstrained);
         setDimensions({
           divWidth: maxWidth,
           divHeight: heightIfWidthConstrained,
@@ -166,6 +195,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
           imageHeight: Math.round(heightIfWidthConstrained)
         });
       }
+      console.log('=========================================');
     };
 
     updateDimensions();
@@ -250,7 +280,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
         paddingTop: isModal ? `${CONTAINER_VERTICAL_PADDING}px` : '0',
         paddingBottom: isModal ? `${CONTAINER_VERTICAL_PADDING}px` : `${CONTAINER_GAP}px`,
         paddingLeft: isModal ? '0' : `${CONTAINER_GAP}px`,
-        paddingRight: isModal ? '0' : `${CONTAINER_GAP}px`
+        paddingRight: isModal ? '0' : `${CONTAINER_GAP}px`,
       }}
       onClick={(e) => (e.stopPropagation())}
     >
@@ -270,7 +300,14 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
               height: `${dimensions.divHeight}px`,
               display: 'inline-block',
               verticalAlign: 'top',
-              position: 'relative'
+              position: 'relative',
+              cursor: isModal && path ? 'pointer' : 'default'
+            }}
+            onClick={(e) => {
+              if (isModal && path) {
+                e.stopPropagation();
+                window.location.href = `/${path}/${visibleImage.slug}`;
+              }
             }}
           >
             <Image
@@ -287,7 +324,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
                   e.stopPropagation();
                   router.back();
                 }}
-                className="absolute top-2 right-2 z-10 w-[32px] h-[32px] sm:w-[44px] sm:h-[44px] rounded-full p-2 bg-white/20 hover:bg-white/40 focus:bg-white/60 active:bg-white/60 transition-all duration-200"
+                className="absolute cursor-pointer top-2 right-2 z-10 w-[32px] h-[32px] sm:w-[44px] sm:h-[44px] rounded-full p-2 bg-white/20 hover:bg-white/40 focus:bg-white/60 active:bg-white/60 transition-all duration-200"
                 aria-label="Close"
               >
                 <Image src="/close.svg" alt="Close" fill />
@@ -417,12 +454,12 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
               : `${dimensions.divWidth}px`
           }}
         >
-          <div className="flex flex-col md:flex-row gap-0 md:gap-2 font-open-sans-light text-xl ">
-            <span className="font-semibold">{visibleImage.title}</span>
-            <span className="hidden md:block font-semibold text-[#939BBA]">|</span>
-            <span className="">{visibleImage.type}</span>
+          <div className="flex flex-col sm:flex-row gap-0 sm:gap-2 font-open-sans-light text-xl overflow-hidden">
+            <span className="font-semibold truncate min-w-0" title={visibleImage.title}>{visibleImage.title}</span>
+            <span className="hidden sm:block font-semibold text-[#939BBA] shrink-0">|</span>
+            <span className="truncate min-w-0" title={visibleImage.type}>{visibleImage.type}</span>
           </div>
-          <div className="font-open-sans-light text-[#6D6D6D]">
+          <div className="font-open-sans-light text-[#6D6D6D] truncate" title={visibleImage.description}>
             {visibleImage.description}
           </div>
         </div>

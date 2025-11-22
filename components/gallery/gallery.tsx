@@ -30,7 +30,7 @@ export default function Gallery({ data, path }: { data: GalleryImage[], path: st
           <Link
             key={poster.slug}
             href={`/${path}/${slug}`}
-            className="cursor-pointer w-full hover:scale-102 active:scale-100 transition-transform duration-150 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#939BBA] relative"
+            className="cursor-pointer w-full hover:scale-102 hover:z-10 active:scale-100 transition-transform duration-150 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#939BBA] relative"
           >
             {!isLoaded && (
               <div className="absolute inset-0 bg-gray-200 animate-pulse" style={{ aspectRatio: `${poster.width}/${poster.height}` }} />

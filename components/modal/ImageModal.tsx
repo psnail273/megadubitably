@@ -140,7 +140,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
     >
       <div className="flex flex-1 flex-row w-auto h-full justify-between">
         <Link
-          className="flex h-full hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
+          className="flex h-full"
           href={`/${path}/${previousSlug}`}
           replace
           onClick={handlePrevious}
@@ -149,7 +149,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
           <Image src={'/chevron-left.svg'} alt='Previous' width={chevronSize} height={chevronSize} />
         </Link>
         <div className="relative">
-          <GalleryItem image={data[index]} isModal={true} chevronSize={chevronSize} />
+          <GalleryItem image={data[index]} isModal={true} chevronSize={chevronSize} path={path} />
           {isNavigating && (
             <div className="absolute inset-0 flex items-center justify-center bg-white/50 animate-fadeIn">
               <div className="w-12 h-12 border-4 border-[#939BBA] border-t-transparent rounded-full animate-spin"></div>
@@ -157,7 +157,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
           )}
         </div>
         <Link
-          className="flex h-full hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
+          className="flex h-full"
           href={`/${path}/${nextSlug}`}
           replace
           onClick={handleNext}

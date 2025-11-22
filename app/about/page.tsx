@@ -16,7 +16,7 @@ export default async function AboutPage() {
             alt="About"
             width={data.width / 2}
             height={data.height / 2}
-            className="max-w-[75%] h-auto w-full lg:w-auto"
+            className="max-w-[75%] h-auto w-full md:w-auto"
           />
           <div className="flex flex-col gap-4">
             <div className="font-open-sans-light text-[#6D6D6D] text-md">

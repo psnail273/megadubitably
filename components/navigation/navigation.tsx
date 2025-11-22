@@ -89,7 +89,7 @@ export default function Navigation() {
   }, [menuOpen]);
 
   return (
-    <nav className="relative flex flex-row m-8">
+    <nav className="relative flex flex-row m-2 sm:m-4 md:m-6 lg:m-8">
       <div className="flex flex-1 flex-col">
         <div className="font-playfair-display-sc text-[#939BBA] font-black italic text-2xl tracking-wide">Margaret Hardy</div>
         <div className="font-open-sans-light text-black text-sm tracking-[.225em] uppercase">Art Director & Illustrator</div>
