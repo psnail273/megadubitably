@@ -23,14 +23,11 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
 
   useEffect(() => {
     const updateChevronSize = () => {
-      if (window.innerWidth >= 1024) {
+      if (window.innerWidth >= 768) {
         setChevronSize(64);
-      } else if (window.innerWidth >= 768) {
-        setChevronSize(56);
       } else if (window.innerWidth >= 640) {
-        setChevronSize(48);
+        setChevronSize(54);
       } else {
-        // Increased from 32 to 44 for better mobile touch targets
         setChevronSize(44);
       }
     };
@@ -143,7 +140,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
     >
       <div className="flex flex-1 flex-row w-auto h-full justify-between">
         <Link
-          className="flex h-full p-2 sm:p-4 hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
+          className="flex h-full p-2 hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
           href={`/${path}/${previousSlug}`}
           replace
           onClick={handlePrevious}
@@ -160,7 +157,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
           )}
         </div>
         <Link
-          className="flex h-full p-2 sm:p-4 hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
+          className="flex h-full p-2 hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
           href={`/${path}/${nextSlug}`}
           replace
           onClick={handleNext}
