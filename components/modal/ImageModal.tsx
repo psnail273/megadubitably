@@ -140,7 +140,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
     >
       <div className="flex flex-1 flex-row w-auto h-full justify-between">
         <Link
-          className="flex h-full p-2 hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
+          className="flex h-full hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
           href={`/${path}/${previousSlug}`}
           replace
           onClick={handlePrevious}
@@ -157,7 +157,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
           )}
         </div>
         <Link
-          className="flex h-full p-2 hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
+          className="flex h-full hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
           href={`/${path}/${nextSlug}`}
           replace
           onClick={handleNext}

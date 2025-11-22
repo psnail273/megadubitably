@@ -8,8 +8,8 @@ import { useRouter } from 'next/navigation';
 export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image: GalleryImage, isModal?: boolean, chevronSize: number }) {
   const CONTAINER_VERTICAL_PADDING = 24;
   const CONTAINER_GAP = 8;
-  const EXTRA_IMAGES_SIDE_WIDTH = 200; // Width when positioned to the right
-  const EXTRA_IMAGES_BOTTOM_HEIGHT = 64; // Height when positioned below
+  const EXTRA_IMAGES_SIDE_WIDTH = 192; // Width when positioned to the right
+  const EXTRA_IMAGES_BOTTOM_HEIGHT = 128; // Height when positioned below
 
   const router = useRouter();
   const [visibleImage, setVisibleImage] = useState(image);
@@ -56,13 +56,14 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
         // If not in modal, calculate space available from top most container
         if (containerRef.current) {
           const rect = containerRef.current.getBoundingClientRect();
-          availableWidth = window.innerWidth;
-          // Available height is from the top of the container to the bottom of the viewport
-          availableHeight = window.innerHeight - rect.top - (CONTAINER_VERTICAL_PADDING * 2);
+          // Account for left and right padding
+          availableWidth = window.innerWidth - (CONTAINER_GAP * 2);
+          // Available height is from the top of the container to the bottom of the viewport minus bottom padding
+          availableHeight = window.innerHeight - rect.top - CONTAINER_GAP;
         } else {
           // Fallback if ref not available yet
-          availableWidth = window.innerWidth;
-          availableHeight = window.innerHeight - (CONTAINER_VERTICAL_PADDING * 2);
+          availableWidth = window.innerWidth - (CONTAINER_GAP * 2);
+          availableHeight = window.innerHeight - CONTAINER_GAP;
         }
       }
 
@@ -247,7 +248,9 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
       ref={containerRef}
       style={{
         paddingTop: isModal ? `${CONTAINER_VERTICAL_PADDING}px` : '0',
-        paddingBottom: `${CONTAINER_VERTICAL_PADDING}px`
+        paddingBottom: isModal ? `${CONTAINER_VERTICAL_PADDING}px` : `${CONTAINER_GAP}px`,
+        paddingLeft: isModal ? '0' : `${CONTAINER_GAP}px`,
+        paddingRight: isModal ? '0' : `${CONTAINER_GAP}px`
       }}
       onClick={(e) => (e.stopPropagation())}
     >
@@ -298,7 +301,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
               data-extra-images-container="true"
               style={{
                 width: `${EXTRA_IMAGES_SIDE_WIDTH}px`,
-                maxHeight: `${dimensions.divHeight}px`,
+                height: `${dimensions.divHeight}px`,
                 overflowY: 'auto',
                 overflowX: 'hidden',
                 display: 'inline-block',
@@ -352,7 +355,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0 }: { image
             data-extra-images-container="true"
             style={{
               height: `${EXTRA_IMAGES_BOTTOM_HEIGHT}px`,
-              maxWidth: `${dimensions.divWidth}px`,
+              width: `${dimensions.divWidth}px`,
               overflowX: 'auto',
               overflowY: 'hidden',
               whiteSpace: 'nowrap',
