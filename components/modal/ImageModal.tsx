@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import type { GalleryImage } from '@/types/galleryImage';
 import GalleryItem from '../gallery/galleryItem';
 import Image from 'next/image';
@@ -18,6 +18,8 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
   const nextSlug = index === data.length - 1 ? data[0].slug : data[index + 1].slug
 
   const [chevronSize, setChevronSize] = useState(48);
+  const [isNavigating, setIsNavigating] = useState(false);
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const updateChevronSize = () => {
@@ -28,7 +30,8 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
       } else if (window.innerWidth >= 640) {
         setChevronSize(48);
       } else {
-        setChevronSize(32);
+        // Increased from 32 to 44 for better mobile touch targets
+        setChevronSize(44);
       }
     };
 
@@ -58,6 +61,11 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
+    // Focus management - focus the modal when it opens
+    if (modalRef.current) {
+      modalRef.current.focus();
+    }
+
     return () => {
       document.body.style.overflow = originalOverflow;
     };
@@ -67,7 +75,8 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
     let touchStartX = 0;
     let touchEndX = 0;
     let touchStartTarget: EventTarget | null = null;
-    const minSwipeDistance = 50; // Minimum distance in pixels for a swipe
+    // Increased from 50 to 75 for more deliberate swipes
+    const minSwipeDistance = 75; // Minimum distance in pixels for a swipe
 
     const handleTouchStart = (e: TouchEvent) => {
       touchStartX = e.changedTouches[0].screenX;
@@ -114,24 +123,50 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
 
   function handlePrevious(e: React.MouseEvent<HTMLAnchorElement>) {
     e.stopPropagation();
+    setIsNavigating(true);
   }
 
   function handleNext(e: React.MouseEvent<HTMLAnchorElement>) {
     e.stopPropagation();
+    setIsNavigating(true);
   }
 
   return (
     <div
-      className="absolute inset-0 flex items-center justify-center z-1 bg-white/90 min-h-screen"
+      ref={modalRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image viewer"
+      tabIndex={-1}
+      className="absolute inset-0 flex items-center justify-center z-1 bg-white/95 min-h-screen"
       onClick={() => router.back()}
     >
       <div className="flex flex-1 flex-row w-auto h-full justify-between">
-        <Link className="flex h-full hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus:bg-[#6D6D6D]/40 active:bg-[#6D6D6D]/40 transition-all duration-200" href={`/${path}/${previousSlug}`} replace onClick={handlePrevious}>
-          <Image src={'/chevron-left.svg'} alt='back' width={chevronSize} height={chevronSize} />
+        <Link
+          className="flex h-full p-2 sm:p-4 hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
+          href={`/${path}/${previousSlug}`}
+          replace
+          onClick={handlePrevious}
+          aria-label="Previous image"
+        >
+          <Image src={'/chevron-left.svg'} alt='Previous' width={chevronSize} height={chevronSize} />
         </Link>
-        <GalleryItem image={data[index]} isModal={true} chevronSize={chevronSize} />
-        <Link className="flex h-full hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus:bg-[#6D6D6D]/40 active:bg-[#6D6D6D]/40 transition-all duration-200" href={`/${path}/${nextSlug}`} replace onClick={handleNext}>
-          <Image src={'/chevron-right.svg'} alt='next' width={chevronSize} height={chevronSize}/>
+        <div className="relative">
+          <GalleryItem image={data[index]} isModal={true} chevronSize={chevronSize} />
+          {isNavigating && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white/50 animate-fadeIn">
+              <div className="w-12 h-12 border-4 border-[#939BBA] border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          )}
+        </div>
+        <Link
+          className="flex h-full p-2 sm:p-4 hover:shadow-2xl hover:bg-[#6D6D6D]/20 focus-visible:bg-[#6D6D6D]/40 focus-visible:outline-2 focus-visible:outline-[#939BBA] active:bg-[#6D6D6D]/40 transition-all duration-200"
+          href={`/${path}/${nextSlug}`}
+          replace
+          onClick={handleNext}
+          aria-label="Next image"
+        >
+          <Image src={'/chevron-right.svg'} alt='Next' width={chevronSize} height={chevronSize}/>
         </Link>
       </div>
     </div>
