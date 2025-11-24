@@ -20,7 +20,7 @@ export default async function PhotoPage({
 
   return (
     <div className="flex flex-1 flex-row w-auto h-full justify-center">
-      <GalleryItem image={image} isModal={false} />
+      <GalleryItem image={image} isModal={false} chevronSize={0} path="poster" />
     </div>
   );
 }

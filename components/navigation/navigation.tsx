@@ -89,7 +89,7 @@ export default function Navigation() {
   }, [menuOpen]);
 
   return (
-    <nav className="relative flex flex-row m-2 sm:m-4 md:m-6 lg:m-8">
+    <nav className="sticky top-0 left-0 right-0 z-10 bg-white/95 flex flex-row p-2 sm:p-4 md:p-6 lg:p-8">
       <div className="flex flex-1 flex-col">
         <div className="font-playfair-display-sc text-[#939BBA] font-black italic text-2xl tracking-wide">Margaret Hardy</div>
         <div className="font-open-sans-light text-black text-sm tracking-[.225em] uppercase">Art Director & Illustrator</div>
@@ -124,7 +124,7 @@ export default function Navigation() {
       {menuOpen && (
         <div
           ref={menuRef}
-          className="absolute top-full left-0 right-0 mt-2 bg-white shadow-lg z-1 lg:hidden animate-slideDown"
+          className="absolute top-full left-0 right-0 bg-white shadow-lg z-10 lg:hidden animate-slideDown"
         >
           <div className="flex flex-col gap-6 p-8">
             {navLinks.map((link) => (

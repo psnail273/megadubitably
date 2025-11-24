@@ -324,7 +324,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
                   e.stopPropagation();
                   router.back();
                 }}
-                className="absolute cursor-pointer top-2 right-2 z-10 w-[32px] h-[32px] sm:w-[44px] sm:h-[44px] rounded-full p-2 bg-white/20 hover:bg-white/40 focus:bg-white/60 active:bg-white/60 transition-all duration-200"
+                className="absolute cursor-pointer top-2 right-2 z-1 w-[32px] h-[32px] sm:w-[44px] sm:h-[44px] rounded-full p-2 bg-white/20 hover:bg-white/40 focus:bg-white/60 active:bg-white/60 transition-all duration-200"
                 aria-label="Close"
               >
                 <Image src="/close.svg" alt="Close" fill />

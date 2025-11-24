@@ -80,30 +80,10 @@
   }
 }
 
-/* Skip link styles */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: #939BBA;
-  color: white;
-  padding: 8px 16px;
-  text-decoration: none;
-  z-index: 100;
-}
-
-.skip-link:focus {
-  top: 0;
-}
-
 html {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
-  height: 100%;
+  min-height: 100%;
 }
-
-/* :root:has(.modal-open) {
-    overflow:scroll;
-  } */

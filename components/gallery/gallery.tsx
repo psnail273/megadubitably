@@ -5,6 +5,7 @@ import type { GalleryImage } from '@/types/galleryImage';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import BackToTop from '../back-to-top/BackToTop';
 
 export default function Gallery({ data, path }: { data: GalleryImage[], path: string }) {
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
@@ -19,37 +20,40 @@ export default function Gallery({ data, path }: { data: GalleryImage[], path: st
   }
 
   return (
-    <Masonry columns={{xxl: 5, xl: 4, lg: 3, md: 2, sm: 1}} spacing={0} className="overflow-hidden">
-      {visibleData.map((poster: GalleryImage, index: number) => {
-        const slug = poster.slug;
-        const isLoaded = loadedImages.has(slug);
-        // Only prioritize first 5 images
-        const shouldPriority = index < 5;
+    <>
+      <Masonry columns={{xxl: 5, xl: 4, lg: 3, md: 2, sm: 1}} spacing={0} className="overflow-hidden">
+        {visibleData.map((poster: GalleryImage, index: number) => {
+          const slug = poster.slug;
+          const isLoaded = loadedImages.has(slug);
+          // Only prioritize first 5 images
+          const shouldPriority = index < 5;
 
-        return (
-          <Link
-            key={poster.slug}
-            href={`/${path}/${slug}`}
-            className="cursor-pointer w-full hover:scale-102 hover:z-10 active:scale-100 transition-transform duration-150 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#939BBA] relative"
-          >
-            {!isLoaded && (
-              <div className="absolute inset-0 bg-gray-200 animate-pulse" style={{ aspectRatio: `${poster.width}/${poster.height}` }} />
-            )}
-            <Image
-              src={poster.image}
-              alt={poster.title}
-              width={poster.width}
-              height={poster.height}
-              className={`w-full h-auto transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-              priority={shouldPriority}
-              loading={shouldPriority ? undefined : 'lazy'}
-              onLoad={() => {
-                setLoadedImages(prev => new Set(prev).add(slug));
-              }}
-            />
-          </Link>
-        );
-      })}
-    </Masonry>
+          return (
+            <Link
+              key={poster.slug}
+              href={`/${path}/${slug}`}
+              className="cursor-pointer w-full hover:scale-102 z-0 hover:z-1 active:scale-100 transition-transform duration-150 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#939BBA] relative"
+            >
+              {!isLoaded && (
+                <div className="absolute inset-0 bg-gray-200 animate-pulse" style={{ aspectRatio: `${poster.width}/${poster.height}` }} />
+              )}
+              <Image
+                src={poster.image}
+                alt={poster.title}
+                width={poster.width}
+                height={poster.height}
+                className={`w-full h-auto transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+                priority={shouldPriority}
+                loading={shouldPriority ? undefined : 'lazy'}
+                onLoad={() => {
+                  setLoadedImages(prev => new Set(prev).add(slug));
+                }}
+              />
+            </Link>
+          );
+        })}
+      </Masonry>
+      <BackToTop />
+    </>
   );
 }

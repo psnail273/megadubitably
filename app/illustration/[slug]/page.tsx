@@ -21,7 +21,7 @@ export default async function IllustrationPage({
 
   return (
     <div className="flex flex-col items-center justify-start h-full">
-      <GalleryItem image={image} isModal={false}/>
+      <GalleryItem image={image} isModal={false} chevronSize={0} path="illustration" />
     </div>
   );
 }
