@@ -17,7 +17,7 @@ export default async function ComicsPage() {
               Once upon a time in the land of enchantment...
               <br />
             </div>
-            <Image src={data['title']['image']} alt="Cottonwood_Title" width={data['title']['width']} height={data['title']['height']} priority/>
+            <Image src={data['title']['image']} alt="Cottonwood_Title" width={data['title']['width']} height={data['title']['height']} priority />
             <div className="font-open-sans-light text-[#6D6D6D] text-center max-w-[100ch]">
               <span className="font-bold italic">Under the Cottonwood Tree: El Susto de la Curandera</span> is a full color 166 page New Mexican folklore adventure graphic novel that I illustrated and designed, working from the script of brothers Paul and Carlos Meyer. I had just moved out to Los Angeles fresh from art school and found Paul’s artist wanted listing on Craigslist. I was drawn to the beautiful scenery and magical elements.
               <br />
@@ -34,14 +34,17 @@ export default async function ComicsPage() {
           </div>
           <div className="flex w-full justify-center bg-[#ffd479]">
             <div className="flex flex-col max-w-[1400px]">
-              {data['pages']['images'].map((image, index) => (
-                <Image key={image} src={image} alt="Cottonwood_Page" width={data['pages']['width']} height={data['pages']['height']} className="w-full h-auto" />
+              {data['pages']['images'].map((image) => (
+                <Image 
+                  key={image} 
+                  src={image} 
+                  alt="Cottonwood_Page" width={data['pages']['width']} height={data['pages']['height']} className="w-full h-auto" priority />
               ))}
             </div>
           </div>
           <div className="flex flex-col items-center gap-4 mx-4">
-            <Image src={data['awards']['image']} alt="Cottonwood_Awards" width={data['awards']['width']} height={data['awards']['height']} />
-            <Image src={data['leaf']['image']} alt="Cottonwood_Leaf" width={data['leaf']['width']} height={data['leaf']['height']} />
+            <Image src={data['awards']['image']} alt="Cottonwood_Awards" width={data['awards']['width']} height={data['awards']['height']} priority />
+            <Image src={data['leaf']['image']} alt="Cottonwood_Leaf" width={data['leaf']['width']} height={data['leaf']['height']} priority />
             <div className="font-open-sans-light text-[#6D6D6D] text-center max-w-[100ch]">
               There are more comic projects in the works, stay tuned!
             </div>
