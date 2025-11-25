@@ -4,6 +4,7 @@ import { Open_Sans, Playfair_Display_SC } from 'next/font/google';
 import Navigation from '@/components/navigation/navigation';
 import MuiRegistry from '@/components/mui-registry';
 import Footer from '@/components/footer/footer';
+import DevModeBanner from '@/components/dev-banner/devBanner';
 
 const openSansLight = Open_Sans({
   variable: '--font-open-sans-light',
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${openSansLight.variable} ${playfairDisplaySc.variable} min-h-full`}>
       <body className={'antialiased min-h-full flex flex-col'}>
+        <DevModeBanner />
         <MuiRegistry>
           <Navigation />
           <main id="main-content" className="flex-1">
