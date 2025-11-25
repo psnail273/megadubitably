@@ -49,7 +49,6 @@ jobs:
             --name megadubitably-dev \
             --restart unless-stopped \
             --network caddy-network \
-            -p 3000:3000 \
             -e CONTACT_EMAIL=${{ secrets.CONTACT_EMAIL }} \
             -e RESEND_API_KEY=${{ secrets.RESEND_API_KEY }} \
             git.stuffworks.net/psnail273/megadubitably-dev:latest
