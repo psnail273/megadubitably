@@ -10,7 +10,7 @@ export default async function ComicsPage() {
   return (
     <>
       <div className="flex flex-col items-center gap-8">
-        <Image className="w-full h-auto" src={data['banner']['image']} alt="Cottonwood_Banner" width={data['banner']['width']} height={data['banner']['height']} priority />
+        <Image className="w-full h-auto" src={data['banner']['image']} alt="Cottonwood_Banner" width={data['banner']['width']} height={data['banner']['height']} />
         <div className="flex flex-col items-center gap-8 w-full">
           <div className="flex flex-col items-center gap-8 mx-4">
             <div className="font-open-sans-light text-[#6D6D6D] text-center max-w-[100ch]">
@@ -35,13 +35,13 @@ export default async function ComicsPage() {
           <div className="flex w-full justify-center bg-[#ffd479]">
             <div className="flex flex-col max-w-[1400px]">
               {data['pages']['images'].map((image) => (
-                <Image key={image} src={image} alt="Cottonwood_Page" width={data['pages']['width']} height={data['pages']['height']} className="w-full h-auto" loading="lazy" />
+                <Image key={image} src={image} alt="Cottonwood_Page" width={data['pages']['width']} height={data['pages']['height']} className="w-full h-auto" />
               ))}
             </div>
           </div>
           <div className="flex flex-col items-center gap-4 mx-4">
-            <Image src={data['awards']['image']} alt="Cottonwood_Awards" width={data['awards']['width']} height={data['awards']['height']} loading="lazy" />
-            <Image src={data['leaf']['image']} alt="Cottonwood_Leaf" width={data['leaf']['width']} height={data['leaf']['height']} loading="lazy" />
+            <Image src={data['awards']['image']} alt="Cottonwood_Awards" width={data['awards']['width']} height={data['awards']['height']} />
+            <Image src={data['leaf']['image']} alt="Cottonwood_Leaf" width={data['leaf']['width']} height={data['leaf']['height']} />
             <div className="font-open-sans-light text-[#6D6D6D] text-center max-w-[100ch]">
               There are more comic projects in the works, stay tuned!
             </div>

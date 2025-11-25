@@ -44,7 +44,7 @@ export default function Gallery({ data, path }: { data: GalleryImage[], path: st
                 height={poster.height}
                 className={`w-full h-auto transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
                 priority={shouldPriority}
-                loading={shouldPriority ? undefined : 'lazy'}
+                // loading={shouldPriority ? undefined : 'lazy'}
                 onLoad={() => {
                   setLoadedImages(prev => new Set(prev).add(slug));
                 }}
