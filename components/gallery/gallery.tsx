@@ -25,8 +25,6 @@ export default function Gallery({ data, path }: { data: GalleryImage[], path: st
         {visibleData.map((poster: GalleryImage, index: number) => {
           const slug = poster.slug;
           const isLoaded = loadedImages.has(slug);
-          // Only prioritize first 5 images
-          const shouldPriority = index < 5;
 
           return (
             <Link
@@ -43,8 +41,7 @@ export default function Gallery({ data, path }: { data: GalleryImage[], path: st
                 width={poster.width}
                 height={poster.height}
                 className={`w-full h-auto transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-                priority={shouldPriority}
-                // loading={shouldPriority ? undefined : 'lazy'}
+                loading={index < 10 ? 'eager' : 'lazy'}
                 onLoad={() => {
                   setLoadedImages(prev => new Set(prev).add(slug));
                 }}
