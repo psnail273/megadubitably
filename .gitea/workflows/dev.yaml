@@ -37,6 +37,7 @@ jobs:
             git.stuffworks.net/psnail273/megadubitably-dev:${{ github.sha }}
           build-args: |
             NEXT_PUBLIC_DEV_MODE=true
+            NEXT_PUBLIC_SITE_URL=https://dev.stuffworks.net
           cache-from: type=registry,ref=git.stuffworks.net/psnail273/megadubitably-dev:latest
           cache-to: type=inline
 

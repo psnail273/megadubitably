@@ -19,6 +19,7 @@ const playfairDisplaySc = Playfair_Display_SC({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: 'Margaret Hardy Portfolio',
   description: 'Collection of my work as an art director and illustrator over the years.',
   openGraph: {

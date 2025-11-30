@@ -35,6 +35,8 @@ jobs:
           tags: |
             git.stuffworks.net/psnail273/megadubitably:latest
             git.stuffworks.net/psnail273/megadubitably:${{ github.sha }}
+          build-args: |
+            NEXT_PUBLIC_SITE_URL=https://meg.stuffworks.net
           cache-from: type=registry,ref=git.stuffworks.net/psnail273/megadubitably:latest
           cache-to: type=inline
 
