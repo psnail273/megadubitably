@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
+import HamburgerX from '../animations/hamburgerX';
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -118,7 +119,7 @@ export default function Navigation() {
           onClick={() => setMenuOpen(!menuOpen)}
           className="p-3 hover:opacity-50 active:scale-105 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#939BBA] rounded"
         >
-          <Image src={menuOpen ? '/close.svg' : '/menu.svg'} alt='Menu' width={38} height={38} />
+          <HamburgerX isOpen={menuOpen} />
         </button>
       </div>
       {menuOpen && (
@@ -126,13 +127,13 @@ export default function Navigation() {
           ref={menuRef}
           className="absolute top-full left-0 right-0 bg-white shadow-lg z-10 lg:hidden animate-slideDown"
         >
-          <div className="flex flex-col gap-6 p-8">
+          <div className="flex flex-col gap-2 px-8 pb-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`font-open-sans-light tracking-wider uppercase hover:opacity-50 active:scale-105 origin-left transition-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#939BBA] ${
+                className={`font-open-sans-light py-2 tracking-wider uppercase hover:opacity-50 active:scale-105 origin-left transition-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#939BBA] ${
                   (link.href === '/' ? (pathname === '/' || pathname.startsWith('/poster')) : pathname.startsWith(link.href))
                     ? 'text-[#939BBA] underline underline-offset-4'
                     : 'text-black'
