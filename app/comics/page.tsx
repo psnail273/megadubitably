@@ -54,7 +54,8 @@ export default async function ComicsPage() {
                   alt="Cottonwood_Page" 
                   width={data['pages']['width']} 
                   height={data['pages']['height']} 
-                  className="w-full h-auto" 
+                  sizes="(max-width: 1400px) 100vw, 1400px"
+                  className="w-full h-auto"
                   loading={index < 2 ? 'eager' : 'lazy'}
                 />
               ))}
