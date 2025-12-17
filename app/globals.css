@@ -5,6 +5,10 @@
   --font-playfair-display-sc: var(--font-playfair-display-sc);
 }
 
+@theme {
+  --breakpoint-xs: 460px;
+}
+
 /* Custom animations */
 @keyframes slideDown {
   from {

@@ -90,7 +90,7 @@ export default function Navigation() {
   }, [menuOpen]);
 
   return (
-    <nav className="sticky top-0 left-0 right-0 z-10 bg-white/95 flex flex-row p-2 sm:p-4 md:p-6 lg:p-8">
+    <nav className="sticky top-0 left-0 right-0 z-10 bg-white/95 flex flex-row p-3 xs:p-8">
       <div className="flex flex-1 flex-col">
         <div className="font-playfair-display-sc text-[#939BBA] font-black italic text-2xl tracking-wide">Margaret Hardy</div>
         <div className="font-open-sans-light text-black text-sm tracking-[.225em] uppercase">Art Director & Illustrator</div>
@@ -125,15 +125,15 @@ export default function Navigation() {
       {menuOpen && (
         <div
           ref={menuRef}
-          className="absolute top-full left-0 right-0 bg-white shadow-lg z-10 lg:hidden animate-slideDown"
+          className="absolute top-full left-0 right-0 bg-white/95 shadow-lg z-10 lg:hidden animate-slideDown"
         >
-          <div className="flex flex-col gap-2 px-8 pb-8">
+          <div className="flex flex-col xs:px-8 pb-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`font-open-sans-light py-2 tracking-wider uppercase hover:opacity-50 active:scale-105 origin-left transition-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#939BBA] ${
+                className={`font-open-sans-light py-4 tracking-wider uppercase hover:opacity-50 active:scale-105 origin-left transition-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#939BBA] ${
                   (link.href === '/' ? (pathname === '/' || pathname.startsWith('/poster')) : pathname.startsWith(link.href))
                     ? 'text-[#939BBA] underline underline-offset-4'
                     : 'text-black'
