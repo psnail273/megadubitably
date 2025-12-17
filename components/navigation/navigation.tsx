@@ -127,7 +127,7 @@ export default function Navigation() {
           ref={menuRef}
           className="absolute top-full left-0 right-0 bg-white/95 shadow-lg z-10 lg:hidden animate-slideDown"
         >
-          <div className="flex flex-col xs:px-8 pb-8">
+          <div className="flex flex-col px-3 xs:px-8 pb-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

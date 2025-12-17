@@ -10,6 +10,7 @@ declare module '@mui/material/styles' {
     lg: true;
     xl: true;
     xxl: true;
+    xxxl: true;
   }
 }
 
@@ -17,11 +18,12 @@ const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1536,
-      xxl: 1920,
+      sm: 640,    // Tailwind sm
+      md: 768,    // Tailwind md
+      lg: 1024,   // Tailwind lg
+      xl: 1280,   // Tailwind xl
+      xxl: 1536,  // Tailwind 2xl
+      xxxl: 1920, // Tailwind 3xl
     },
   },
 });
