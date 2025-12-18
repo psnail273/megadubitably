@@ -284,7 +284,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
       }}
       onClick={(e) => (e.stopPropagation())}
     >
-      <div style={{ marginTop: `${topMargin}px`, marginLeft: 'auto', marginRight: 'auto', width: 'fit-content' }}>
+      <div style={{ marginTop: `${topMargin/2}px`, marginBottom: `${topMargin/2}px`, marginLeft: 'auto', marginRight: 'auto', width: 'fit-content' }}>
         {/* Main image and extra images container */}
         <div style={{
           position: 'relative',

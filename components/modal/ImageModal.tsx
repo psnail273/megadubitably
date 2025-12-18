@@ -138,9 +138,9 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
       className="absolute inset-0 flex items-center justify-center z-20 bg-white/95 min-h-screen"
       onClick={() => router.back()}
     >
-      <div className="flex flex-1 flex-row w-auto h-full justify-between">
+      <div className="flex flex-1 flex-row w-auto h-full justify-between items-center">
         <Link
-          className="flex h-full"
+          className="flex h-full items-center justify-center"
           href={`/${path}/${previousSlug}`}
           replace
           onClick={handlePrevious}
@@ -157,7 +157,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
           )}
         </div>
         <Link
-          className="flex h-full"
+          className="flex h-full items-center justify-center"
           href={`/${path}/${nextSlug}`}
           replace
           onClick={handleNext}
