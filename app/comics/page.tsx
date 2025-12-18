@@ -46,7 +46,7 @@ export default async function ComicsPage() {
             </div>
           </div>
           <div className="flex w-full justify-center bg-[#ffd479]">
-            <div className="flex flex-col max-w-[1400px]">
+            <div className="grid grid-cols-1 xl:grid-cols-2 w-full">
               {data['pages']['images'].map((image, index) => (
                 <Image 
                   key={image} 
@@ -54,7 +54,7 @@ export default async function ComicsPage() {
                   alt="Cottonwood_Page" 
                   width={data['pages']['width']} 
                   height={data['pages']['height']} 
-                  sizes="(max-width: 1400px) 100vw, 1400px"
+                  quality={50}
                   className="w-full h-auto"
                   loading={index < 2 ? 'eager' : 'lazy'}
                 />
