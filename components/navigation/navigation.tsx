@@ -92,8 +92,8 @@ export default function Navigation() {
   return (
     <nav className="sticky top-0 left-0 right-0 z-10 bg-white/95 flex flex-row p-3 xs:p-8">
       <div className="flex flex-1 flex-col">
-        <div className="font-playfair-display-sc text-[#939BBA] font-black italic text-2xl tracking-wide">Margaret Hardy</div>
-        <div className="font-open-sans-light text-black text-sm tracking-[.225em] uppercase">Art Director & Illustrator</div>
+        <div className="font-playfair-display-sc text-[#939BBA] font-black italic text-2xl xs:text-3xl tracking-wide">Margaret Hardy</div>
+        <div className="font-open-sans-light text-black text-xs xs:text-sm tracking-[.225em] uppercase">Art Director & Illustrator</div>
       </div>
       <div className="hidden lg:flex flex-row justify-end items-center gap-8 ">
         {navLinks.map((link) => (
