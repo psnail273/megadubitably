@@ -34,7 +34,7 @@ export async function sendMessage(
   try {
     const { data, error } = await resend.emails.send({
       from: 'megadubitably@stuffworks.net',
-      to: process.env.CONTACT_EMAIL as string,
+      to: process.env.NEXT_PUBLIC_CONTACT_EMAIL as string,
       replyTo: email,
       subject: `Megadubitably Contact Form Message from ${name}`,
       text: `From: ${name} (${email})\n\n${message}`,

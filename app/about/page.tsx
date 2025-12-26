@@ -30,7 +30,7 @@ export default async function AboutPage() {
             <div className="font-open-sans-light text-[#6D6D6D] text-md">
               For inquiries, contact me here or email me at{ ' ' }
               <a className='text-[#939BBA] hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#939BBA] rounded' href='mailto:meg@meghardyart.com' target="_blank" rel="noopener noreferrer">
-                {process.env.CONTACT_EMAIL}
+                {process.env.NEXT_PUBLIC_CONTACT_EMAIL}
               </a>.
             </div>
           </div>

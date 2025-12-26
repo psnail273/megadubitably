@@ -37,6 +37,7 @@ jobs:
             git.stuffworks.net/psnail273/megadubitably:${{ github.sha }}
           build-args: |
             NEXT_PUBLIC_SITE_URL=https://meg.stuffworks.net
+            NEXT_PUBLIC_CONTACT_EMAIL=${{ secrets.NEXT_PUBLIC_CONTACT_EMAIL }}
           cache-from: type=registry,ref=git.stuffworks.net/psnail273/megadubitably:latest
           cache-to: type=inline
 
@@ -49,7 +50,6 @@ jobs:
             --name megadubitably \
             --restart unless-stopped \
             --network caddy-network \
-            -e CONTACT_EMAIL=${{ secrets.CONTACT_EMAIL }} \
             -e RESEND_API_KEY=${{ secrets.RESEND_API_KEY }} \
             git.stuffworks.net/psnail273/megadubitably:latest
 
