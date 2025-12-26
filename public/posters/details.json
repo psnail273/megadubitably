@@ -62,18 +62,7 @@
     "type": "Empire Cover",
     "description": "Designed for BLT Communications",
     "width": 1080,
-    "height": 1398,
-    "extra": [
-      {
-        "title": "Thunderbolts",
-        "image": "/posters/065B_1947x1947.jpg",
-        "slug": "thunderbolts-2",
-        "type": "Empire Cover",
-        "description": "Designed for BLT Communications",
-        "width": 1947,
-        "height": 1947
-      }
-    ]
+    "height": 1398
   },
   {
     "title": "The Wheel of Time",
@@ -153,8 +142,8 @@
     "title": "Ms. Marvel",
     "image": "/posters/055_2667x1500.jpeg",
     "slug": "ms-marvel",
-    "type": "Logo Design",
-    "description": "Designed for BLT Communications",
+    "type": "Logo Design and Finishing",
+    "description": "Designed and Finished for BLT Communications",
     "width": 2667,
     "height": 1500
   },
@@ -172,7 +161,7 @@
     "image": "/posters/053_1500x1500.jpg",
     "slug": "agatha",
     "type": "Logo Design and Finishing",
-    "description": "Designed for BLT Communications",
+    "description": "Designed and Finished for BLT Communications",
     "width": 1500,
     "height": 1500
   },
@@ -228,45 +217,43 @@
     "type": "Season 2 Character Series",
     "description": "Designed for BLT Communications",
     "width": 1080,
-    "height": 1350,
-    "extra": [
-      {
-        "title": "Evil",
-        "image": "/posters/043_1080x1350.jpg",
-        "slug": "evil-2",
-        "type": "Season 2 Character Series",
-        "description": "Designed for BLT Communications",
-        "width": 1080,
-        "height": 1350
-      },
-      {
-        "title": "Evil",
-        "image": "/posters/044_1080x1350.jpg",
-        "slug": "evil-3",
-        "type": "Season 2 Character Series",
-        "description": "Designed for BLT Communications",
-        "width": 1080,
-        "height": 1350
-      },
-      {
-        "title": "Evil",
-        "image": "/posters/045_1080x1350.jpg",
-        "slug": "evil-4",
-        "type": "Season 2 Character Series",
-        "description": "Designed for BLT Communications",
-        "width": 1080,
-        "height": 1350
-      },
-      {
-        "title": "Evil",
-        "image": "/posters/046_1080x1350.jpg",
-        "slug": "evil-5",
-        "type": "Season 2 Character Series",
-        "description": "Designed for BLT Communications",
-        "width": 1080,
-        "height": 1350
-      }
-    ]
+    "height": 1350
+  },
+  {
+    "title": "Evil",
+    "image": "/posters/043_1080x1350.jpg",
+    "slug": "evil-2",
+    "type": "Season 2 Character Series",
+    "description": "Designed for BLT Communications",
+    "width": 1080,
+    "height": 1350
+  },
+  {
+    "title": "Evil",
+    "image": "/posters/044_1080x1350.jpg",
+    "slug": "evil-3",
+    "type": "Season 2 Character Series",
+    "description": "Designed for BLT Communications",
+    "width": 1080,
+    "height": 1350
+  },
+  {
+    "title": "Evil",
+    "image": "/posters/045_1080x1350.jpg",
+    "slug": "evil-4",
+    "type": "Season 2 Character Series",
+    "description": "Designed for BLT Communications",
+    "width": 1080,
+    "height": 1350
+  },
+  {
+    "title": "Evil",
+    "image": "/posters/046_1080x1350.jpg",
+    "slug": "evil-5",
+    "type": "Season 2 Character Series",
+    "description": "Designed for BLT Communications",
+    "width": 1080,
+    "height": 1350
   },
   {
     "title": "Evil",
@@ -349,7 +336,7 @@
     "image": "/posters/035_1013x1500.jpg",
     "slug": "jungle-cruise",
     "type": "Teaser Poster",
-    "description": "Designed for BLT Communications",
+    "description": "Designed and Finished for BLT Communications",
     "width": 1013,
     "height": 1500
   },
@@ -358,7 +345,7 @@
     "image": "/posters/012_1920x1080.jpg",
     "slug": "avengers-1",
     "type": "Age of Ultron Logo Design and Finishing",
-    "description": "Designed for BLT Communications",
+    "description": "Designed and Finished for BLT Communications",
     "width": 1920,
     "height": 1080,
     "extra": [
@@ -367,7 +354,7 @@
         "image": "/posters/025_2667x1500.jpg",
         "slug": "avengers-2",
         "type": "Infinity War Logo Design and Finishing",
-        "description": "Designed for BLT Communications",
+        "description": "Designed and Finished for BLT Communications",
         "width": 2667,
         "height": 1500
       },
@@ -376,7 +363,7 @@
         "image": "/posters/034_2667x1500.jpg",
         "slug": "avengers-3",
         "type": "End Game Logo Design and Finishing",
-        "description": "Designed for BLT Communications",
+        "description": "Designed and Finished for BLT Communications",
         "width": 2667,
         "height": 1500
       }
@@ -469,6 +456,15 @@
     "width": 770,
     "height": 1100
   },
+    {
+    "title": "The Nutcracker And The Four Realms",
+    "image": "/posters/020_1013x1500.jpg",
+    "slug": "nutcracker-10",
+    "type": "Teaser Poster and Logo Design",
+    "description": "Designed and Finished for BLT Communications",
+    "width": 1013,
+    "height": 1500
+  },
   {
     "title": "Maleficent Mistress of Evil",
     "image": "/posters/027_1500x784.jpg",
@@ -521,15 +517,6 @@
     "type": "Teaser Poster",
     "description": "Designed for BLT Communications",
     "width": 1012,
-    "height": 1500
-  },
-  {
-    "title": "The Nutcracker And The Four Realms",
-    "image": "/posters/020_1013x1500.jpg",
-    "slug": "nutcracker-10",
-    "type": "Teaser Poster and Logo Design",
-    "description": "Designed and Finished for BLT Communications",
-    "width": 1013,
     "height": 1500
   },
   {
@@ -589,6 +576,15 @@
     ]
   },
   {
+    "title": "The Beauty and the Beast",
+    "image": "/posters/013_1012x1500.jpg",
+    "slug": "bb-6",
+    "type": "Teaser Poster",
+    "description": "Designed for BLT Communications",
+    "width": 1012,
+    "height": 1500
+  },
+  {
     "title": "Peter and the Dragon",
     "image": "/posters/015_1020x1500.jpg",
     "slug": "peter-and-the-dragon-1",
@@ -606,15 +602,7 @@
     "width": 800,
     "height": 1185
   },
-  {
-    "title": "The Beauty and the Beast",
-    "image": "/posters/013_1012x1500.jpg",
-    "slug": "bb-6",
-    "type": "Teaser Poster",
-    "description": "Designed for BLT Communications",
-    "width": 1012,
-    "height": 1500
-  },
+  
   {
     "title": "Star Wars The Force Awakens",
     "image": "/posters/011_1061x1500.jpg",
@@ -651,9 +639,9 @@
     "type": "Character Series",
     "description": "Designed for BLT Communications",
     "width": 1028,
-    "height": 1500,
-    "extra": [
-      {
+    "height": 1500
+  },
+  {
         "title": "Alice Through the Looking Glass",
         "image": "/posters/006_1028x1500.jpg",
         "slug": "alice-4",
@@ -688,9 +676,7 @@
         "description": "Designed for BLT Communications",
         "width": 1028,
         "height": 1500
-      }
-    ]
-  },
+      },
   {
     "title": "Into the Woods",
     "image": "/posters/004_1013x1500.jpg",

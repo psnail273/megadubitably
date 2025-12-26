@@ -1,218 +1,251 @@
 [
     {
-        "title": "1",
-        "image": "/illustrations/i-image-1.jpg",
-        "slug": "illustration-1",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 770,
-        "height": 550
+        "title": "Brew",
+        "image": "/illustrations/I_001_1500x2250.jpg",
+        "slug": "brew",
+        "type": "Digital Painting",
+        "description": "Personal Work",
+        "width": 1500,
+        "height": 2250
     },
     {
-        "title": "2",
-        "image": "/illustrations/i-image-2.jpg",
-        "slug": "illustration-2",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 474,
-        "height": 640
+        "title": "Day of the Dead",
+        "image": "/illustrations/I_002_1556x2000.jpg",
+        "slug": "dots",
+        "type": "Digital Painting",
+        "description": "Featured in 13crowns Ghostbook Anthology",
+        "width": 1556,
+        "height": 2000
     },
     {
-        "title": "3",
-        "image": "/illustrations/i-image-3.jpg",
-        "slug": "illustration-3",
-        "type": "Illustration",
-        "description": "Designed for fun",
-       "width": 474,
-        "height": 640
+        "title": "The Turnip",
+        "image": "/illustrations/I_003_1941x1500.jpg",
+        "slug": "the-turnip",
+        "type": "Digital Painting",
+        "description": "Personal Work",
+        "width": 1941,
+        "height": 1500
     },
     {
-        "title": "4",
-        "image": "/illustrations/i-image-4.jpg",
-        "slug": "illustration-4",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 474,
-        "height": 640
-    },
-    {        
-        "title": "5",
-        "image": "/illustrations/i-image-5.jpg",
-        "slug": "illustration-5",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 750,
-        "height": 485
-    },
-    {        
-        "title": "6",
-        "image": "/illustrations/i-image-6.jpg",
-        "slug": "illustration-6",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 789,
-        "height": 450
-    },
-    {        
-        "title": "7",
-        "image": "/illustrations/i-image-7.jpg",
-        "slug": "illustration-7",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 523,
-        "height": 640
-    },
-    {        
-        "title": "8",
-        "image": "/illustrations/i-image-8.jpg",
-        "slug": "illustration-8",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 523,
-        "height": 640
-    },
-    {        
-        "title": "9",
-        "image": "/illustrations/i-image-9.jpg",
-        "slug": "illustration-9",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 523,
-        "height": 640
+        "title": "Under the Cottonwood Tree",
+        "image": "/illustrations/I_003B_1228x1900.jpg",
+        "slug": "utct",
+        "type": "Digital Painting",
+        "description": "Front Cover for 'Under the Cottonwood Tree'",
+        "width": 1228,
+        "height": 1900
     },
     {
-        "title": "10",
-        "image": "/illustrations/i-image-10.jpg",
-        "slug": "illustration-10",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 468,
-        "height": 640
+        "title": "The Wizard of Oz",
+        "image": "/illustrations/I_004_1734x2000.jpg",
+        "slug": "wizard",
+        "type": "Digital Painting",
+        "description": "Personal Work",
+        "width": 1734,
+        "height": 2000
     },
     {
-        "title": "11",
-        "image": "/illustrations/i-image-11.jpg",
-        "slug": "illustration-11",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 436,
-        "height": 640
+        "title": "Figure Study",
+        "image": "/illustrations/I_005_2000x1500.jpg",
+        "slug": "charcoal-1",
+        "type": "Charcoal",
+        "description": "Personal Work",
+        "width": 2000,
+        "height": 1500
     },
     {
-        "title": "12",
-        "image": "/illustrations/i-image-12.jpg",
-        "slug": "illustration-12",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 324,
-        "height": 640
-    },
-    {
-        "title": "13",
-        "image": "/illustrations/i-image-13.jpg",
-        "slug": "illustration-13",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 414,
-        "height": 640
-    },
-    {
-        "title": "14",
-        "image": "/illustrations/i-image-14.jpg",
-        "slug": "illustration-14",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 1557,
-        "height": 956
-    },
-    {
-        "title": "15",
-        "image": "/illustrations/i-image-15.jpg",
-        "slug": "illustration-15",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 1098,
-        "height": 890
-    },
-    {
-        "title": "16",
-        "image": "/illustrations/i-image-16.jpg",
-        "slug": "illustration-16",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 247,
-        "height": 320
-    },
-    {
-        "title": "17",
-        "image": "/illustrations/i-image-17.jpg",
-        "slug": "illustration-17",
-        "type": "Illustration",
-        "description": "Designed for fun",
+        "title": "Do You Want to Build a Meth Lab?",
+        "image": "/illustrations/I_006_1600x905.jpg",
+        "slug": "meth-1",
+        "type": "Background Painting",
+        "description": "Painted for Toonocracy",
         "width": 1600,
         "height": 905
     },
     {
-        "title": "18",
-        "image": "/illustrations/i-image-18.jpg",
-        "slug": "illustration-18",
-        "type": "Illustration",
-        "description": "Designed for fun",
+        "title": "Do You Want to Build a Meth Lab?",
+        "image": "/illustrations/I_007_1600x896.jpg",
+        "slug": "meth-2",
+        "type": "Background Painting",
+        "description": "Painted for Toonocracy",
         "width": 1600,
         "height": 896
     },
     {
-        "title": "19",
-        "image": "/illustrations/i-image-19.jpg",
-        "slug": "illustration-19",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 247,
-        "height": 320
+        "title": "Selkie",
+        "image": "/illustrations/I_008_1500x2323.jpg",
+        "slug": "selkie-1",
+        "type": "Comic Page 1",
+        "description": "Personal Work",
+        "width": 1500,
+        "height": 2323,
+        "extra": [
+            {
+                "title": "Selkie",
+                "image": "/illustrations/I_008B_1500x2323.jpg",
+                "slug": "selkie-2",
+                "type": "Comic Page 2",
+                "description": "Personal Work",
+                "width": 1500,
+                "height": 2323
+            },
+            {
+                "title": "Selkie",
+                "image": "/illustrations/I_008C_1500x2323.jpg",
+                "slug": "selkie-3",
+                "type": "Comic Page 3",
+                "description": "Personal Work",
+                "width": 1500,
+                "height": 2323
+            },
+            {
+                "title": "Selkie",
+                "image": "/illustrations/I_008D_1500x2323.jpg",
+                "slug": "selkie-4",
+                "type": "Comic Page 4",
+                "description": "Personal Work",
+                "width": 1500,
+                "height": 2323
+            }
+        ]
     },
     {
-        "title": "20",
-        "image": "/illustrations/i-image-20.jpg",
-        "slug": "illustration-20",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 249,
-        "height": 320
+        "title": "Portrait Study",
+        "image": "/illustrations/I_009_1500x2028.jpg",
+        "slug": "portrait-1",
+        "type": "Oil Painting",
+        "description": "Personal Work",
+        "width": 1500,
+        "height": 2028,
+        "extra": [
+            {
+                "title": "Portrait Study",
+                "image": "/illustrations/I_009B_1500x2000.jpg",
+                "slug": "portrait-2",
+                "type": "Oil Painting",
+                "description": "Personal Work",
+                "width": 1500,
+                "height": 2000
+            }
+        ]
     },
     {
-        "title": "21",
-        "image": "/illustrations/i-image-23.jpg",
-        "slug": "illustration-23",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 222,
-        "height": 320
+        "title": "'Let the Right Ones In' Album Cover",
+        "image": "/illustrations/I_010_2000x2000.jpg",
+        "slug": "right-ones",
+        "type": "Mixed Media",
+        "description": "Painted for Moe Pope",
+        "width": 2000,
+        "height": 2000
     },
     {
-        "title": "22",
-        "image": "/illustrations/i-image-24.jpg",
-        "slug": "illustration-24",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 270,
-        "height": 320
+        "title": "The Trumpeter",
+        "image": "/illustrations/I_011_1262x1950.jpg",
+        "slug": "trumpeter",
+        "type": "Digital Painting",
+        "description": "Personal Work",
+        "width": 1262,
+        "height": 1950
     },
     {
-        "title": "23",
-        "image": "/illustrations/i-image-25.jpg",
-        "slug": "illustration-25",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 207,
-        "height": 320
+        "title": "For Gondor!",
+        "image": "/illustrations/I_012_1200x1200.jpg",
+        "slug": "gondor-1",
+        "type": "Digital Painting",
+        "description": "Painted for Fantasy Flight Games",
+        "width": 1200,
+        "height": 1200,
+        "extra": [
+            {
+                "title": "For Gondor!",
+                "image": "/illustrations/I_012B_1435x2000.jpg",
+                "slug": "gondor-2",
+                "type": "Digital Painting",
+                "description": "Painted for Fantasy Flight Games",
+                "width": 1435,
+                "height": 2000
+            }
+        ]
     },
     {
-        "title": "24",
-        "image": "/illustrations/i-image-26.jpg",
-        "slug": "illustration-26",
-        "type": "Illustration",
-        "description": "Designed for fun",
-        "width": 187,
-        "height": 320
+        "title": "Family Portrait",
+        "image": "/illustrations/I_013_2000x1600.jpg",
+        "slug": "family-portrait",
+        "type": "Digital Painting",
+        "description": "Commissioned Work",
+        "width": 2000,
+        "height": 1600
+    },
+    {
+        "title": "Paperwings Caterpillar",
+        "image": "/illustrations/I_014_2000x1347.jpg",
+        "slug": "caterpillars",
+        "type": "Digital Painting",
+        "description": "Painted for Paperwings Podcast",
+        "width": 2000,
+        "height": 1347
+    },
+    {
+        "title": "Regresar",
+        "image": "/illustrations/I_015_2592x864.jpg",
+        "slug": "regresar",
+        "type": "Digital Painting",
+        "description": "Commissioned Work",
+        "width": 2592,
+        "height": 864
+    },
+    {
+        "title": "Axolotl",
+        "image": "/illustrations/I_016_1326x2000.jpg",
+        "slug": "axolotl",
+        "type": "Mixed Media",
+        "description": "Personal Work",
+        "width": 1326,
+        "height": 2000
+    },
+    {
+        "title": "Grandparents",
+        "image": "/illustrations/I_017_2000x1939.jpg",
+        "slug": "grandparents",
+        "type": "Mixed Media",
+        "description": "Personal Work",
+        "width": 2000,
+        "height": 1939
+    },
+    {
+        "title": "Figure Study",
+        "image": "/illustrations/I_018_1500x2000.JPG",
+        "slug": "charcoal-2",
+        "type": "Charcoal",
+        "description": "Personal Work",
+        "width": 1500,
+        "height": 2000
+    },
+    {
+        "title": "Chinese Plein Air Alley",
+        "image": "/illustrations/I_019_1500x2000.JPG",
+        "slug": "plein-air-1",
+        "type": "Oil Painting",
+        "description": "Personal Work",
+        "width": 1500,
+        "height": 2000
+    },
+    {
+        "title": "Chinese Plein Air Hotel",
+        "image": "/illustrations/I_020_2027x1500.JPG",
+        "slug": "plein-air-2",
+        "type": "Oil Painting",
+        "description": "Personal Work",
+        "width": 2027,
+        "height": 1500
+    },
+    {
+        "title": "Chicago 29",
+        "image": "/illustrations/I_021_1208x1800.jpg",
+        "slug": "chicago-29",
+        "type": "Digital Painting",
+        "description": "Personal Work",
+        "width": 1208,
+        "height": 1800
     }
 ]
