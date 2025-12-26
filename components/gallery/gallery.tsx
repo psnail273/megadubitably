@@ -21,7 +21,7 @@ export default function Gallery({ data, path }: { data: GalleryImage[], path: st
 
   return (
     <>
-      <Masonry columns={{xxxl: 3, xl: 2, md: 1}} spacing={0} className="overflow-hidden">
+      <Masonry columns={{xxxl: 4, xl: 3, md: 2, xs: 1}} spacing={0} className="overflow-hidden">
         {visibleData.map((poster: GalleryImage, index: number) => {
           const slug = poster.slug;
           const isLoaded = loadedImages.has(slug);
