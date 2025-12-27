@@ -284,7 +284,15 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
       }}
       onClick={(e) => (e.stopPropagation())}
     >
-      <div style={{ marginTop: `${topMargin/2}px`, marginBottom: `${topMargin/2}px`, marginLeft: 'auto', marginRight: 'auto', width: 'fit-content' }}>
+      <div style={{ 
+        marginTop: `${topMargin/2}px`, 
+        marginBottom: `${topMargin/2}px`, 
+        marginLeft: 'auto', 
+        marginRight: 'auto', 
+        width: extraImagesPosition === 'side' && extra && extra.length > 0
+          ? `${dimensions.divWidth + EXTRA_IMAGES_SIDE_WIDTH + CONTAINER_GAP}px`
+          : `${dimensions.divWidth}px`
+      }}>
         {/* Main image and extra images container */}
         <div style={{
           position: 'relative',
@@ -449,17 +457,15 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
           ref={textDivRef}
           style={{
             marginTop: `${CONTAINER_GAP}px`,
-            maxWidth: extraImagesPosition === 'side'
-              ? `${dimensions.divWidth + EXTRA_IMAGES_SIDE_WIDTH + CONTAINER_GAP}px`
-              : `${dimensions.divWidth}px`
+            width: '100%'
           }}
         >
           <div className="flex flex-col sm:flex-row gap-0 sm:gap-2 font-open-sans-light text-xl overflow-hidden">
-            <span className="font-semibold truncate min-w-0" title={visibleImage.title}>{visibleImage.title}</span>
+            <span className="font-semibold min-w-0" title={visibleImage.title}>{visibleImage.title}</span>
             <span className="hidden sm:block font-semibold text-[#939BBA] shrink-0">|</span>
             <span className="truncate min-w-0" title={visibleImage.type}>{visibleImage.type}</span>
           </div>
-          <div className="font-open-sans-light text-[#6D6D6D] truncate" title={visibleImage.description}>
+          <div className="font-open-sans-light text-[#6D6D6D]" title={visibleImage.description}>
             {visibleImage.description}
           </div>
         </div>
