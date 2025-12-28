@@ -146,7 +146,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
           onClick={handlePrevious}
           aria-label="Previous image"
         >
-          <Image src={'/chevron-left.svg'} alt='Previous' width={chevronSize} height={chevronSize} />
+          <Image src={'/chevron-left.svg'} alt='Previous' width={chevronSize} height={chevronSize} className="hover:-translate-x-2 active:scale-110 transition-all duration-200" />
         </Link>
         <div className="relative">
           <GalleryItem image={data[index]} isModal={true} chevronSize={chevronSize} path={path} />
@@ -163,7 +163,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
           onClick={handleNext}
           aria-label="Next image"
         >
-          <Image src={'/chevron-right.svg'} alt='Next' width={chevronSize} height={chevronSize}/>
+          <Image src={'/chevron-right.svg'} alt='Next' width={chevronSize} height={chevronSize} className="hover:translate-x-2 active:scale-110 transition-all duration-200" />
         </Link>
       </div>
     </div>

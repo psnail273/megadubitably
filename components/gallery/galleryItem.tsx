@@ -5,6 +5,11 @@ import { GalleryImage } from '@/types/galleryImage';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+// Helper to get viewport height accounting for Safari's dynamic browser UI
+const getViewportHeight = (): number => {
+  return window.visualViewport?.height ?? window.innerHeight;
+};
+
 export default function GalleryItem({ image, isModal, chevronSize = 0, path }: { image: GalleryImage, isModal?: boolean, chevronSize: number, path?: string }) {
   const CONTAINER_VERTICAL_PADDING = 24;
   const CONTAINER_GAP = 8;
@@ -51,7 +56,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
       if (isModal) {
         // Just subtract the next buttons from the width
         availableWidth = window.innerWidth - (chevronSize * 2);
-        availableHeight = window.innerHeight - (CONTAINER_VERTICAL_PADDING * 2);
+        availableHeight = getViewportHeight() - (CONTAINER_VERTICAL_PADDING * 2);
       } else {
         // If not in modal, calculate space available from top most container
         if (containerRef.current) {
@@ -59,17 +64,17 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
           console.log('🔍 Container rect:', {
             top: rect.top,
             height: rect.height,
-            windowHeight: window.innerHeight
+            windowHeight: getViewportHeight()
           });
           // Account for left and right padding
           availableWidth = window.innerWidth - (CONTAINER_GAP * 2);
           // Available height is from the top of the container to the bottom of the viewport minus bottom padding
-          availableHeight = window.innerHeight - rect.top - CONTAINER_GAP;
-          console.log('🔍 Calculated availableHeight:', window.innerHeight, '-', rect.top, '-', CONTAINER_GAP, '=', availableHeight);
+          availableHeight = getViewportHeight() - rect.top - CONTAINER_GAP;
+          console.log('🔍 Calculated availableHeight:', getViewportHeight(), '-', rect.top, '-', CONTAINER_GAP, '=', availableHeight);
         } else {
           // Fallback if ref not available yet
           availableWidth = window.innerWidth - (CONTAINER_GAP * 2);
-          availableHeight = window.innerHeight - CONTAINER_GAP;
+          availableHeight = getViewportHeight() - CONTAINER_GAP;
         }
       }
 
@@ -155,14 +160,20 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
         console.log('=========================');
         setExtraImagesPosition(positionMode);
       } else {
-        // No extra images, just account for text
+        // No extra images
         console.log('=== NO EXTRA IMAGES - Layout Calculation ===');
         console.log('Available:', { availableWidth, availableHeight });
         console.log('Text height:', textHeight);
         console.log('Aspect ratio:', aspectRatio);
         console.log('maxWidth:', maxWidth);
-        console.log('maxHeight (availableHeight - textHeight - gap):', availableHeight, '-', textHeight, '-', CONTAINER_GAP, '=', availableHeight - textHeight - CONTAINER_GAP);
-        maxHeight = availableHeight - textHeight - CONTAINER_GAP;
+        // Only subtract text height in modal mode - non-modal pages can scroll
+        if (isModal) {
+          console.log('maxHeight (availableHeight - textHeight - gap):', availableHeight, '-', textHeight, '-', CONTAINER_GAP, '=', availableHeight - textHeight - CONTAINER_GAP);
+          maxHeight = availableHeight - textHeight - CONTAINER_GAP;
+        } else {
+          console.log('maxHeight (non-modal, ignoring text):', availableHeight);
+          // For non-modal, don't subtract text - let the page scroll naturally
+        }
       }
 
       // Calculate what the width would be if constrained by height
@@ -200,7 +211,11 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
 
     updateDimensions();
     window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
+    window.visualViewport?.addEventListener('resize', updateDimensions);
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+      window.visualViewport?.removeEventListener('resize', updateDimensions);
+    };
   }, [visibleImage.width, visibleImage.height, isModal, chevronSize, extra]);
 
   useEffect(() => {
@@ -254,7 +269,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
         return;
       }
 
-      const containerHeight = window.innerHeight - (CONTAINER_VERTICAL_PADDING * 2);
+      const containerHeight = getViewportHeight() - (CONTAINER_VERTICAL_PADDING * 2);
 
       let contentHeight = dimensions.divHeight + textDivRef.current.offsetHeight + CONTAINER_GAP;
 
@@ -270,7 +285,11 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
 
     updateMargin();
     window.addEventListener('resize', updateMargin);
-    return () => window.removeEventListener('resize', updateMargin);
+    window.visualViewport?.addEventListener('resize', updateMargin);
+    return () => {
+      window.removeEventListener('resize', updateMargin);
+      window.visualViewport?.removeEventListener('resize', updateMargin);
+    };
   }, [dimensions.divHeight, isModal, extra, extraImagesPosition]);
 
   return (
@@ -325,14 +344,14 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
               height={dimensions.imageHeight}
             />
 
-            {/* Close button - only shown in modal */}
+            {/* Close button - only shown in modal, positioned to the right of the image */}
             {isModal && (
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   router.back();
                 }}
-                className="absolute cursor-pointer top-2 right-2 z-1 w-[32px] h-[32px] sm:w-[44px] sm:h-[44px] rounded-full p-2 bg-white/20 hover:bg-white/40 focus:bg-white/60 active:bg-white/60 transition-all duration-200"
+                className="absolute cursor-pointer top-2 left-full z-1 w-[44px] h-[44px] sm:w-[54px] sm:h-[54px] md:w-[64px] md:h-[64px] rounded-full p-2 hover:rotate-90 active:scale-110 transition-all duration-200"
                 aria-label="Close"
               >
                 <Image src="/close.svg" alt="Close" fill />
@@ -460,12 +479,12 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
             width: '100%'
           }}
         >
-          <div className="flex flex-col sm:flex-row gap-0 sm:gap-2 font-open-sans-light text-xl overflow-hidden">
+          <div className="flex flex-col sm:flex-row gap-0 sm:gap-2 font-open-sans-light text-sm md:text-base lg:text-xl overflow-hidden">
             <span className="font-semibold min-w-0" title={visibleImage.title}>{visibleImage.title}</span>
             <span className="hidden sm:block font-semibold text-[#939BBA] shrink-0">|</span>
             <span className="truncate min-w-0" title={visibleImage.type}>{visibleImage.type}</span>
           </div>
-          <div className="font-open-sans-light text-[#6D6D6D]" title={visibleImage.description}>
+          <div className="font-open-sans-light text-[#6D6D6D] text-xs md:text-sm lg:text-base" title={visibleImage.description}>
             {visibleImage.description}
           </div>
         </div>
