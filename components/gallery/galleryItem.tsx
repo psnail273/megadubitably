@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 
 // Helper to get viewport height accounting for Safari's dynamic browser UI
 const getViewportHeight = (): number => {
-  return window.visualViewport?.height ?? window.innerHeight;
+  return window.innerHeight;
 };
 
 export default function GalleryItem({ image, isModal, chevronSize = 0, path }: { image: GalleryImage, isModal?: boolean, chevronSize: number, path?: string }) {
@@ -166,14 +166,8 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
         console.log('Text height:', textHeight);
         console.log('Aspect ratio:', aspectRatio);
         console.log('maxWidth:', maxWidth);
-        // Only subtract text height in modal mode - non-modal pages can scroll
-        if (isModal) {
-          console.log('maxHeight (availableHeight - textHeight - gap):', availableHeight, '-', textHeight, '-', CONTAINER_GAP, '=', availableHeight - textHeight - CONTAINER_GAP);
-          maxHeight = availableHeight - textHeight - CONTAINER_GAP;
-        } else {
-          console.log('maxHeight (non-modal, ignoring text):', availableHeight);
-          // For non-modal, don't subtract text - let the page scroll naturally
-        }
+        console.log('maxHeight (availableHeight - textHeight - gap):', availableHeight, '-', textHeight, '-', CONTAINER_GAP, '=', availableHeight - textHeight - CONTAINER_GAP);
+        maxHeight = availableHeight - textHeight - CONTAINER_GAP;
       }
 
       // Calculate what the width would be if constrained by height
