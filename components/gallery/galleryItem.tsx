@@ -37,6 +37,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
   const [extraImagesPosition, setExtraImagesPosition] = useState<'side' | 'bottom'>('side');
   const textDivRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const initialTopRef = useRef<number | null>(null); // Store initial top position for non-modal pages
 
   const handleImageSwap = (e: React.MouseEvent<HTMLButtonElement>, index: number) => {
     if (!extra) return;
@@ -69,8 +70,26 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
         if (containerRef.current) {
           const rect = containerRef.current.getBoundingClientRect();
           const safeAreaBottom = getSafeAreaBottom();
+          
+          // For non-modal pages, capture the initial top position once (when not scrolled)
+          // This prevents the image from resizing when the user scrolls
+          if (initialTopRef.current === null) {
+            // Only set initial top if the element is in a reasonable position (not scrolled past)
+            // If rect.top is negative or very small, assume we're scrolled and wait
+            if (rect.top > 0) {
+              initialTopRef.current = rect.top;
+            }
+          }
+          
+          // Use the initial top position if available, otherwise use current (but clamp to reasonable values)
+          const effectiveTop = initialTopRef.current !== null 
+            ? initialTopRef.current 
+            : Math.max(rect.top, 0);
+          
           console.log('🔍 Container rect:', {
             top: rect.top,
+            effectiveTop: effectiveTop,
+            initialTop: initialTopRef.current,
             height: rect.height,
             windowHeight: getViewportHeight(),
             safeAreaBottom: safeAreaBottom
@@ -78,8 +97,8 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
           // Account for left and right padding
           availableWidth = window.innerWidth - (CONTAINER_GAP * 2);
           // Available height is from the top of the container to the bottom of the viewport minus bottom padding and safe area
-          availableHeight = getViewportHeight() - rect.top - CONTAINER_GAP - safeAreaBottom;
-          console.log('🔍 Calculated availableHeight:', getViewportHeight(), '-', rect.top, '-', CONTAINER_GAP, '-', safeAreaBottom, '=', availableHeight);
+          availableHeight = getViewportHeight() - effectiveTop - CONTAINER_GAP - safeAreaBottom;
+          console.log('🔍 Calculated availableHeight:', getViewportHeight(), '-', effectiveTop, '-', CONTAINER_GAP, '-', safeAreaBottom, '=', availableHeight);
         } else {
           // Fallback if ref not available yet
           availableWidth = window.innerWidth - (CONTAINER_GAP * 2);
@@ -215,6 +234,9 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
       console.log('=========================================');
     };
 
+    // Reset the initial top position when image or modal state changes
+    initialTopRef.current = null;
+    
     updateDimensions();
     window.addEventListener('resize', updateDimensions);
     window.visualViewport?.addEventListener('resize', updateDimensions);
