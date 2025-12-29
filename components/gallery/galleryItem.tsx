@@ -10,6 +10,13 @@ const getViewportHeight = (): number => {
   return window.innerHeight;
 };
 
+// Get the safe area inset at the bottom (for mobile browser navigation bars)
+const getSafeAreaBottom = (): number => {
+  const style = getComputedStyle(document.documentElement);
+  const safeAreaBottom = style.getPropertyValue('--safe-area-inset-bottom');
+  return parseFloat(safeAreaBottom) || 0;
+};
+
 export default function GalleryItem({ image, isModal, chevronSize = 0, path }: { image: GalleryImage, isModal?: boolean, chevronSize: number, path?: string }) {
   const CONTAINER_VERTICAL_PADDING = 24;
   const CONTAINER_GAP = 8;
@@ -61,20 +68,22 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
         // If not in modal, calculate space available from top most container
         if (containerRef.current) {
           const rect = containerRef.current.getBoundingClientRect();
+          const safeAreaBottom = getSafeAreaBottom();
           console.log('🔍 Container rect:', {
             top: rect.top,
             height: rect.height,
-            windowHeight: getViewportHeight()
+            windowHeight: getViewportHeight(),
+            safeAreaBottom: safeAreaBottom
           });
           // Account for left and right padding
           availableWidth = window.innerWidth - (CONTAINER_GAP * 2);
-          // Available height is from the top of the container to the bottom of the viewport minus bottom padding
-          availableHeight = getViewportHeight() - rect.top - CONTAINER_GAP;
-          console.log('🔍 Calculated availableHeight:', getViewportHeight(), '-', rect.top, '-', CONTAINER_GAP, '=', availableHeight);
+          // Available height is from the top of the container to the bottom of the viewport minus bottom padding and safe area
+          availableHeight = getViewportHeight() - rect.top - CONTAINER_GAP - safeAreaBottom;
+          console.log('🔍 Calculated availableHeight:', getViewportHeight(), '-', rect.top, '-', CONTAINER_GAP, '-', safeAreaBottom, '=', availableHeight);
         } else {
           // Fallback if ref not available yet
           availableWidth = window.innerWidth - (CONTAINER_GAP * 2);
-          availableHeight = getViewportHeight() - CONTAINER_GAP;
+          availableHeight = getViewportHeight() - CONTAINER_GAP - getSafeAreaBottom();
         }
       }
 
@@ -294,7 +303,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
       ref={containerRef}
       style={{
         paddingTop: isModal ? `${CONTAINER_VERTICAL_PADDING}px` : '0',
-        paddingBottom: isModal ? `${CONTAINER_VERTICAL_PADDING}px` : `${CONTAINER_GAP}px`,
+        paddingBottom: isModal ? `${CONTAINER_VERTICAL_PADDING}px` : `calc(${CONTAINER_GAP}px + var(--safe-area-inset-bottom, 0px))`,
         paddingLeft: isModal ? '0' : `${CONTAINER_GAP}px`,
         paddingRight: isModal ? '0' : `${CONTAINER_GAP}px`,
       }}

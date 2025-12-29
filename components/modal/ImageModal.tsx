@@ -135,7 +135,7 @@ export default function ImageModal({ data, index, path }: ImageModalProps) {
       aria-modal="true"
       aria-label="Image viewer"
       tabIndex={-1}
-      className="absolute inset-0 flex items-center justify-center z-20 bg-white/95 min-h-screen"
+      className="absolute inset-0 flex items-center justify-center z-20 bg-white/95 min-h-svh"
       onClick={() => router.back()}
     >
       <div className="flex flex-1 flex-row w-auto h-full justify-between items-center">

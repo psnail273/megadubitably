@@ -88,6 +88,13 @@ html {
   min-height: 100%;
 }
 
+:root {
+  /* Expose safe area insets as CSS custom properties for JavaScript access */
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+}
+
 body {
   min-height: 100%;
+  /* Safe area insets for mobile browsers with notches and navigation bars */
+  padding-bottom: var(--safe-area-inset-bottom);
 }
