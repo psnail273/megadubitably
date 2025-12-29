@@ -83,11 +83,14 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
       if (textDivRef.current) {
         const textDiv = textDivRef.current;
         const originalMaxWidth = textDiv.style.maxWidth;
+        const originalWidth = textDiv.style.width;
         // Temporarily set to full available width to get accurate measurement
         textDiv.style.maxWidth = `${availableWidth}px`;
+        textDiv.style.width = `${availableWidth}px`;
         textHeight = textDiv.offsetHeight;
         // Restore original
         textDiv.style.maxWidth = originalMaxWidth;
+        textDiv.style.width = originalWidth;
       }
 
       // Determine if extra images exist and where they should be positioned
@@ -297,15 +300,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
       }}
       onClick={(e) => (e.stopPropagation())}
     >
-      <div style={{ 
-        marginTop: `${topMargin/2}px`, 
-        marginBottom: `${topMargin/2}px`, 
-        marginLeft: 'auto', 
-        marginRight: 'auto', 
-        width: extraImagesPosition === 'side' && extra && extra.length > 0
-          ? `${dimensions.divWidth + EXTRA_IMAGES_SIDE_WIDTH + CONTAINER_GAP}px`
-          : `${dimensions.divWidth}px`
-      }}>
+      <div style={{ marginTop: `${topMargin/2}px`, marginBottom: `${topMargin/2}px`, marginLeft: 'auto', marginRight: 'auto', width: 'fit-content' }}>
         {/* Main image and extra images container */}
         <div style={{
           position: 'relative',
@@ -470,7 +465,7 @@ export default function GalleryItem({ image, isModal, chevronSize = 0, path }: {
           ref={textDivRef}
           style={{
             marginTop: `${CONTAINER_GAP}px`,
-            width: '100%'
+            width: `${dimensions.divWidth}px`
           }}
         >
           <div className="flex flex-col sm:flex-row gap-0 sm:gap-2 font-open-sans-light text-sm md:text-base lg:text-xl overflow-hidden">
